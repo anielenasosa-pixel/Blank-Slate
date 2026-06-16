@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://cgq5odntc7tve"]
+
+[ext_resource type="Script" uid="uid://bgt46uwm7cb6m" path="res://scripts/Stats_Hero_Enemy.gd" id="1_6sr7n"]
+
+[resource]
+script = ExtResource("1_6sr7n")
+name = ""
+health = 0
+dmg = 0
+attack = false
+explosion = false

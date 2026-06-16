@@ -1,0 +1,174 @@
+[gd_scene load_steps=38 format=3 uid="uid://tlwbyet188np"]
+
+[ext_resource type="Script" uid="uid://7km3rooxcjfx" path="res://scripts/menu.gd" id="1_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://gy0peh3cub7" path="res://assets/pause:cont menu/background.png" id="2_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://ddi21dovn02eh" path="res://assets/pause:cont menu/button.png" id="3_g3eks"]
+[ext_resource type="FontFile" uid="uid://b5edssf4sbn5t" path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/connection_ii/ConnectionII.otf" id="4_v86rl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_13sgg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6lef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70i5f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mj5lg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ufwb2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6cdou"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i42df"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7jp70"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxgkd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6gyw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhnvy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81l6r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsfmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oi1it"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fy8yy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wigr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lnf0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ffqrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x16fv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g54pe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_48ryc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vhsb5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ytvr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3eks"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v86rl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3dmrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwfsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a04p5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b5gwo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ndyk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0qewb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhjd8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d3h35"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_mhnvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4ytvr")
+
+[node name="feedback" type="Sprite2D" parent="."]
+texture = ExtResource("3_g3eks")
+
+[node name="Label" type="Label" parent="feedback"]
+z_index = 1
+offset_left = -37.0
+offset_top = -38.0
+offset_right = 40.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("4_v86rl")
+text = "Continue
+"
+
+[node name="continue" type="Sprite2D" parent="."]
+position = Vector2(0, -61)
+texture = ExtResource("3_g3eks")
+
+[node name="Label" type="Label" parent="continue"]
+z_index = 1
+offset_left = -31.0
+offset_top = 54.0
+offset_right = 29.0
+offset_bottom = 77.0
+theme_override_fonts/font = ExtResource("4_v86rl")
+text = "Restart"
+
+[node name="restart" type="Sprite2D" parent="."]
+position = Vector2(0, -30)
+texture = ExtResource("3_g3eks")
+
+[node name="Label" type="Label" parent="restart"]
+offset_left = -35.0
+offset_top = 53.0
+offset_right = 39.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("4_v86rl")
+text = "Feedback"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -76.0
+offset_top = -42.0
+offset_right = -68.0
+offset_bottom = -34.0
+scale = Vector2(18.6309, 2.81266)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_13sgg")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_i6lef")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_70i5f")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_mj5lg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ufwb2")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6cdou")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_i42df")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_7jp70")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mxgkd")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_g6gyw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mhnvy")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = -74.0
+offset_top = -10.0
+offset_right = -66.0
+offset_bottom = -2.0
+scale = Vector2(18.6309, 2.81266)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_81l6r")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rsfmq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_oi1it")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_fy8yy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6wigr")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_lnf0i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ffqrc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_x16fv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_g54pe")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_48ryc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vhsb5")
+
+[node name="Button3" type="Button" parent="."]
+offset_left = -75.0
+offset_top = 19.0
+offset_right = -67.0
+offset_bottom = 27.0
+scale = Vector2(18.6309, 2.81266)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4ytvr")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_g3eks")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v86rl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3dmrc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_hwfsl")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_a04p5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_b5gwo")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_0ndyk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0qewb")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_mhjd8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d3h35")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://lvhy6p1sgg8h"]
+
+[ext_resource type="Script" uid="uid://bgt46uwm7cb6m" path="res://scripts/Stats_Hero_Enemy.gd" id="1_lxv6d"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_lxv6d")
+name = "Projectile Enemy"
+health = 6
+dmg = 5
+attack = true
+explosion = false

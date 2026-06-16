@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://beo1un3slgct0"]
+
+[ext_resource type="Script" uid="uid://bgt46uwm7cb6m" path="res://scripts/Stats_Hero_Enemy.gd" id="1_wrfru"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_wrfru")
+name = "Wah Pt Fire"
+health = 4
+dmg = 3
+attack = false
+explosion = false

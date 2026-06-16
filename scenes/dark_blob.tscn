@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctk3r27ry2eto"]
+
+[ext_resource type="Texture2D" uid="uid://cre5u5s8lxg5s" path="res://assets/Enemy_Anim/DB/Enemy_calm_2.png" id="1_4ra3w"]
+[ext_resource type="Script" uid="uid://n118oarh24wc" path="res://scripts/dark_blob.gd" id="1_5uy6h"]
+[ext_resource type="Texture2D" uid="uid://cpq0qj4igvk2o" path="res://assets/Enemy_Anim/DB/Enemy_calm_1.png" id="2_5uy6h"]
+[ext_resource type="Resource" uid="uid://trpth8reithu" path="res://Resources/Dark_Blob.tres" id="2_c4w8v"]
+[ext_resource type="Resource" uid="uid://b7yqlrea8i36s" path="res://Resources/sword_1.tres" id="2_dpyc1"]
+[ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_qwm2f"]
+[ext_resource type="Texture2D" uid="uid://1bh8uqecpdvn" path="res://assets/Enemy_Anim/DB/shadow.png" id="3_c4w8v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+radius = 12.8571
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpyc1"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2shl"]
+atlas = ExtResource("1_4ra3w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tnp2d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpyc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2shl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
+radius = 12.8571
+
+[sub_resource type="Curve" id="Curve_dpyc1"]
+_data = [Vector2(0.0734463, 0.987494), 0.0, 0.0, 0, 0, Vector2(0.816384, 0.405964), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="dark_blob" type="CharacterBody2D" groups=["enemies"]]
+z_index = 1
+scale = Vector2(0.7, 0.7)
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_5uy6h")
+basic_sword = ExtResource("2_dpyc1")
+hero_stats = ExtResource("2_qwm2f")
+enemy_stats = ExtResource("2_c4w8v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5uy6h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tnp2d")
+autoplay = "default"
+
+[node name="Sprite2D2" type="Sprite2D" parent="AnimatedSprite2D"]
+position = Vector2(2.11758e-22, 11.4286)
+texture = ExtResource("3_c4w8v")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy_hit_box"]]
+collision_layer = 260
+collision_mask = 260
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c4w8v")
+
+[node name="Attack_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="death_timer" type="Timer" parent="."]
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_dpyc1")
+
+[node name="knockback_timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="timescale" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="timeout" from="timescale" to="." method="_on_timescale_timeout"]

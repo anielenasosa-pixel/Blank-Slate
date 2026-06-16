@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PowerUps" load_steps=3 format=3 uid="uid://bfi10by20tsa5"]
+
+[ext_resource type="Script" uid="uid://bvdcgh4cvml0k" path="res://scripts/power_ups.gd" id="1_4wj3i"]
+[ext_resource type="Texture2D" uid="uid://bp3420bo1falb" path="res://assets/sheild_anim/Untitled_Artwork-2(1).png" id="2_ynpqe"]
+
+[resource]
+script = ExtResource("1_4wj3i")
+name = "Globo"
+description = "Sheild_powerup"
+max = 32
+min = 21
+sprite = ExtResource("2_ynpqe")
+chosen = true

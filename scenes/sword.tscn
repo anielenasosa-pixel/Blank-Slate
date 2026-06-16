@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2mlga1d5xt1n"]
+
+[ext_resource type="Script" uid="uid://001sugexxwqn" path="res://scripts/sword.gd" id="1_n355p"]
+[ext_resource type="Texture2D" uid="uid://c1vmq2i161sk0" path="res://assets/sword_stuff/sword.png" id="1_ycbs3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n355p"]
+size = Vector2(1.93782, 17.7321)
+
+[sub_resource type="Curve" id="Curve_1yp6w"]
+_data = [Vector2(0.010582, 0.979532), 0.0, 0.0, 0, 0, Vector2(1, 0.0116959), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fnw8x"]
+offsets = PackedFloat32Array(0, 0.393333, 1)
+colors = PackedColorArray(1, 0.607843, 0, 1, 1, 0.762092, 0.393333, 0.606667, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_n355p"]
+offsets = PackedFloat32Array(0, 0.672727, 1)
+colors = PackedColorArray(1, 0.602436, 0.446222, 1, 1, 0.958436, 0.942105, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s4ec8"]
+gradient = SubResource("Gradient_n355p")
+
+[sub_resource type="Curve" id="Curve_k5whp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1yp6w"]
+curve = SubResource("Curve_k5whp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fnw8x"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_1yp6w")
+color = Color(0.992157, 0.831373, 0, 1)
+color_ramp = SubResource("GradientTexture1D_s4ec8")
+
+[node name="sword" type="Node2D"]
+z_index = 3
+rotation = 2.0944
+script = ExtResource("1_n355p")
+
+[node name="Pivot" type="StaticBody2D" parent="."]
+position = Vector2(1.27778e-07, 2.12865e-06)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Pivot" groups=["sword"]]
+position = Vector2(-0.236955, -18.9186)
+collision_layer = 4
+collision_mask = 4
+mass = 8.0
+contact_monitor = true
+max_contacts_reported = 2
+linear_damp = 1.5
+angular_damp = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/RigidBody2D"]
+shape = SubResource("RectangleShape2D_n355p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/RigidBody2D"]
+position = Vector2(-0.763046, 5.91856)
+texture = ExtResource("1_ycbs3")
+
+[node name="TrailTip" type="Marker2D" parent="."]
+position = Vector2(0.624226, -26.9186)
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+position = Vector2(-0.241799, -26.4186)
+points = PackedVector2Array(16.2418, 35.4186)
+width = 20.0
+width_curve = SubResource("Curve_1yp6w")
+gradient = SubResource("Gradient_fnw8x")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../Pivot/RigidBody2D")
+node_b = NodePath("../Pivot")
+
+[node name="sword_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-0.241798, -26.4186)
+local_coords = true
+trail_enabled = true
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_fnw8x")
+
+[connection signal="body_entered" from="Pivot/RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]
+[connection signal="timeout" from="sword_timer" to="." method="_on_sword_timer_timeout"]

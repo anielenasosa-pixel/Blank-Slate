@@ -1,0 +1,142 @@
+[gd_scene load_steps=25 format=3 uid="uid://cl6xkq80gbfml"]
+
+[ext_resource type="Script" uid="uid://m5630vba64ms" path="res://scripts/start_screen.gd" id="1_hm208"]
+[ext_resource type="Texture2D" uid="uid://b8ywjgajk57n5" path="res://assets/Title/Untitled_Artwork-1.png" id="2_r2jwc"]
+[ext_resource type="Texture2D" uid="uid://bb840jwoci1f7" path="res://assets/Title/Untitled_Artwork-5.png" id="3_hm208"]
+[ext_resource type="Texture2D" uid="uid://jkluxv7tggxu" path="res://assets/Title/Untitled_Artwork-3.png" id="4_5pab1"]
+[ext_resource type="Texture2D" uid="uid://diqbg41jcg1bp" path="res://assets/Title/Untitled_Artwork-2.png" id="5_5pab1"]
+[ext_resource type="Texture2D" uid="uid://d2nnc7xjynfn6" path="res://assets/Title/Untitled_Artwork-4.png" id="6_o30b1"]
+
+[sub_resource type="Animation" id="Animation_ka6nf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -286.433)]
+}
+
+[sub_resource type="Animation" id="Animation_o30b1"]
+resource_name = "title"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.3, 1.5, 1.7, 1.9, 2),
+"transitions": PackedFloat32Array(3.4822, 0.812252, 1.51572, 0.5, 2, 0.435275, 1.1487),
+"update": 0,
+"values": [Vector2(0, -286.433), Vector2(0, 50), Vector2(0, -20), Vector2(0, 30), Vector2(0, -10), Vector2(0, 10), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ws7p0"]
+_data = {
+&"RESET": SubResource("Animation_ka6nf"),
+&"title": SubResource("Animation_o30b1")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r2jwc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hm208"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pab1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o30b1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ka6nf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ws7p0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ecdxc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qls88"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pcj7n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bdg0b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfy2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qls88"]
+atlas = ExtResource("4_5pab1")
+region = Rect2(213, 240, 213, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcj7n"]
+atlas = ExtResource("5_5pab1")
+region = Rect2(213, 240, 213, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdg0b"]
+atlas = ExtResource("6_o30b1")
+region = Rect2(213, 240, 213, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfy2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qls88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcj7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdg0b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Start_screen" type="Node2D"]
+scale = Vector2(30, 30)
+script = ExtResource("1_hm208")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.15, 0.15)
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(0, -4.03333)
+scale = Vector2(1, 1.36704)
+texture = ExtResource("2_r2jwc")
+
+[node name="title" type="Sprite2D" parent="."]
+position = Vector2(0, -286.433)
+texture = ExtResource("3_hm208")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="title"]
+libraries = {
+&"": SubResource("AnimationLibrary_ws7p0")
+}
+autoplay = "title"
+
+[node name="Button" type="Button" parent="."]
+offset_left = -89.2667
+offset_top = 75.5
+offset_right = -81.2667
+offset_bottom = 82.5
+scale = Vector2(22.8396, 8.76522)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r2jwc")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_hm208")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5pab1")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_o30b1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ka6nf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ws7p0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ecdxc")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_qls88")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pcj7n")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_bdg0b")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xfy2r")
+
+[node name="button_texture" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.9, 118.967)
+sprite_frames = SubResource("SpriteFrames_xfy2r")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

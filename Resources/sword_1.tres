@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="swords" load_steps=2 format=3 uid="uid://b7yqlrea8i36s"]
+
+[ext_resource type="Script" uid="uid://l7tb3w0xldhx" path="res://scripts/sword_stats.gd" id="1_vtny6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vtny6")
+Name = "Basic_sword"
+dmg = 2

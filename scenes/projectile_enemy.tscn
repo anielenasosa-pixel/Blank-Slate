@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1n7c3iv7i8ye"]
+
+[ext_resource type="Script" uid="uid://c6d41b4kspkff" path="res://scripts/projectile_enemy.gd" id="1_wuqtc"]
+[ext_resource type="Resource" uid="uid://b7yqlrea8i36s" path="res://Resources/sword_1.tres" id="2_55n3g"]
+[ext_resource type="Texture2D" uid="uid://rv147xbk3ayp" path="res://assets/Enemy_Anim/DB/enemy_attack_1.png" id="2_g0sxb"]
+[ext_resource type="Resource" uid="uid://lvhy6p1sgg8h" path="res://Resources/projectile_enemy.tres" id="2_hcqsc"]
+[ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_yc545"]
+[ext_resource type="Texture2D" uid="uid://dqq2s6myr6igy" path="res://assets/Enemy_Anim/DB/enemy_attack_2.png" id="3_etekd"]
+[ext_resource type="Texture2D" uid="uid://1bh8uqecpdvn" path="res://assets/Enemy_Anim/DB/shadow.png" id="4_vcmns"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
+radius = 12.8571
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55n3g"]
+atlas = ExtResource("2_g0sxb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnhyu"]
+atlas = ExtResource("3_etekd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qctt5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55n3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnhyu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
+radius = 12.8571
+
+[sub_resource type="Curve" id="Curve_55n3g"]
+_data = [Vector2(0.0734463, 0.987494), 0.0, 0.0, 0, 0, Vector2(0.816384, 0.405964), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Projectile_enemy" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.7, 0.7)
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_wuqtc")
+basic_sword = ExtResource("2_55n3g")
+hero_stats = ExtResource("2_yc545")
+enemy_stats = ExtResource("2_hcqsc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5uy6h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qctt5")
+autoplay = "default"
+
+[node name="Sprite2D2" type="Sprite2D" parent="AnimatedSprite2D"]
+position = Vector2(2.11758e-22, 11.4286)
+texture = ExtResource("4_vcmns")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_c4w8v")
+
+[node name="Attack_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="death_timer" type="Timer" parent="."]
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_55n3g")
+
+[node name="knockback_timer" type="Timer" parent="."]
+wait_time = 0.15
+
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_area_2d_2_body_exited"]
+[connection signal="timeout" from="Attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="knockback_timer" to="." method="_on_knockback_timer_timeout"]
