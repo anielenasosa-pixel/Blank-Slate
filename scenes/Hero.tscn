@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=3 uid="uid://byvwhjyk4q3ox"]
+[gd_scene load_steps=151 format=3 uid="uid://byvwhjyk4q3ox"]
 
 [ext_resource type="Script" uid="uid://byqnblpygu18" path="res://scripts/hero.gd" id="1_kjrfn"]
 [ext_resource type="Texture2D" uid="uid://coirtsk53x3pi" path="res://assets/Character Animations/walk_1.png" id="1_rhc5p"]
@@ -679,6 +679,43 @@ size = Vector2(23, 32)
 _data = [Vector2(0.0649717, 0.246513), 0.0, 0.0, 0, 0, Vector2(0.50565, 0.321549), 0.0, 0.0, 0, 0, Vector2(0.946328, 0.506012), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Animation" id="Animation_si121"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.633333, 0.8, 1, 1.1, 1.2, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 2, 0.5, 2, 0.5, 0.5, 2, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 1), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 1), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 1), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 1), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jm1t1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_taxbi"]
+_data = {
+&"RESET": SubResource("Animation_jm1t1"),
+&"hit": SubResource("Animation_si121")
+}
+
 [node name="Hero" type="CharacterBody2D" groups=["Hero"]]
 z_index = 1
 collision_layer = 49
@@ -712,7 +749,6 @@ polygon = PackedVector2Array(-1, -23, 6, -23, 11, -20, 19, -13, 25, -1, 25, 11, 
 disabled = true
 
 [node name="Hero_collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_i177t")
 
@@ -737,20 +773,6 @@ collision_mask = 200
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_box"]
 position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_barkd")
-
-[node name="spawner" type="Node2D" parent="."]
-position = Vector2(-310, -160)
-
-[node name="spawner_timer_1" type="Timer" parent="spawner"]
-wait_time = 5.0
-autostart = true
-
-[node name="spawner2" type="Node2D" parent="."]
-position = Vector2(203, 174)
-
-[node name="spawner_timer_2" type="Timer" parent="spawner2"]
-wait_time = 3.0
-autostart = true
 
 [node name="attack_cooldown" type="Timer" parent="."]
 autostart = true
@@ -797,11 +819,18 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_si121")
 color = Color(0.882353, 0.603922, 0.0470588, 1)
 
+[node name="knockback" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_taxbi")
+}
+
 [connection signal="body_entered" from="sheild_radius" to="." method="_on_sheild_radius_body_entered"]
 [connection signal="body_entered" from="Hit_box" to="." method="_on_hit_box_body_entered"]
 [connection signal="body_exited" from="Hit_box" to="." method="_on_hit_box_body_exited"]
-[connection signal="timeout" from="spawner/spawner_timer_1" to="." method="_on_spawner_timer_timeout"]
-[connection signal="timeout" from="spawner2/spawner_timer_2" to="." method="_on_spawner_timer_2_timeout"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
@@ -811,3 +840,4 @@ color = Color(0.882353, 0.603922, 0.0470588, 1)
 [connection signal="timeout" from="sheild_timer_blinking" to="." method="_on_sheild_timer_blinking_timeout"]
 [connection signal="timeout" from="sheild_cooldown" to="." method="_on_sheild_cooldown_timeout"]
 [connection signal="timeout" from="sheild_cooldown_count" to="." method="_on_sheild_cooldown_count_timeout"]
+[connection signal="timeout" from="knockback" to="." method="_on_knockback_timeout"]

@@ -7,6 +7,7 @@ class_name DarkBlob
 
 @onready var shine_package=preload("res://scenes/shine.tscn")
 
+signal died
 
 var alive=true
 var speed=50
@@ -52,16 +53,13 @@ func lose_health():
 				$Attack_timer.start()
 				you_can_now_take_health=false
 				dead()
+				
 
 
 
 func dead():
 	if enemy_stats.health <= 0:
-		var shine = shine_package.instantiate()
-		shine.position=position
-		get_parent().add_child(shine)
-		shine.call_deferred("spawn")
-	
+		emit_signal("died")
 		
 		$CPUParticles2D2.emitting = true
 		$AnimatedSprite2D.visible=false

@@ -18,6 +18,7 @@ var spawn_enemy_2=false
 var alive = true
 var restart_pressed=false
 
+var knockback_is_happening=false
 #@onready var projectile=$"../Projectile_enemy"
 #@onready var dark_blob= $"../dark_blob"
 
@@ -42,6 +43,7 @@ var sheild_enabled
 
 
 var dash_direction = Vector2.ZERO
+var knock_direction = Vector2.ZERO
 #this is to lock on the dir
 var is_dashing = false 
 
@@ -54,9 +56,10 @@ var speed=130
 func _ready() -> void:
 	$sword_hit_box.monitoring=false
 	$sword_hit_box/CollisionPolygon.disabled=true
-	if GameData.save_data["shield_unlocked"]:
+	Events.sheild_enabled.connect(sheild_enabled_for_the_first_time)
+	if GameData.save_data["globo_unlocked"]:
 		shield_enabled()
-	
+	Events.new_map.connect(new_map)
 	
 
 	
@@ -66,22 +69,32 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	sheild_on()
 	health_gone()
-		
-	
-	
 	movement()
 	attacked()
 	#sword_swing()
 	#STOP_SPAMMING()
 	#dead()
-	spawn_an_enemy_1()
+	#spawn_an_enemy_1()
 	#spawn_an_enemy_2()
+func knockback():
+	knockback_is_happening=true
+	$Camera2D.screen_shake(5,0.5)
+	$knockback.start()
+	speed=200
+	$AnimationPlayer.play("hit")
+	
 func movement() -> void:
 	if Global.pause:
 		return
  
 	var direction := Input.get_vector("left", "right", "up", "down")
-	velocity = (dash_direction if is_dashing else direction) * speed
+
+	if is_dashing:
+		velocity = dash_direction * speed
+	elif knockback_is_happening:
+		velocity = knock_direction * speed
+	else:
+		velocity = direction * speed
  
 	if not sword_not_swinging or dash_is_running:
 		move_and_slide()
@@ -309,17 +322,25 @@ func _on_attack_cooldown_timeout() -> void:
 	attack_mode_on=true
 	
 func attacked():
-	
-	for enemy in enemies:
+	if Global.pause:
+		return
+	for enemy in EnemyManager.enemies:
 		if is_instance_valid(enemy) and enemy.attack and not sheild_ongoing:
 				if attack_mode_on:
 					enemy.damage()
+					knock_direction=(global_position - enemy.global_position).normalized()
+					knockback()
 					attack_mode_on=false
 					$attack_cooldown.start()
 					health_bar_update()
 					return false
 				else:
 					return true
+
+
+
+
+
 
 func _on_hit_box_body_exited(body: CharacterBody2D) -> void:
 	if body is DarkBlob:
@@ -334,18 +355,9 @@ func _on_hit_box_body_exited(body: CharacterBody2D) -> void:
 func health_gone():
 	if hero_stats.health<=0 and alive:
 		alive=false
-		dead()
+		#dead()
 	
-
-func dead():
-	if hero_stats.health<=0:
-		Global.pause = true
-		$"../Scene_transition/AnimationPlayer".play("Game Over")
-		await $"../Scene_transition/AnimationPlayer".animation_finished
-		restart_pressed = true
-			
-	
-
+		
 
 func health_bar_update():
 	$"../CanvasLayer/TextureProgressBar".value=hero_stats.health
@@ -354,7 +366,7 @@ func health_bar_update():
 func spawn_an_enemy_1():
 	if Global.pause:
 		return
-	if spawn_enemy_1 and $"../Tutorial".tutorial==false:
+	if spawn_enemy_1 and Global.tutorial==false:
 
 		var random_pos = Vector2(
 			randf_range(658,1653),
@@ -392,7 +404,7 @@ func _on_spawner_timer_timeout() -> void:
 func spawn_an_enemy_2():
 	if Global.pause:
 		return
-	if spawn_enemy_2 and $"../Tutorial".tutorial==false:
+	if spawn_enemy_2 and Global.tutorial==false:
 
 		var random_pos = Vector2(
 			randf_range(658,1653),
@@ -449,9 +461,12 @@ func shield_enabled():
 	tween.tween_property($"../CanvasLayer/globo", "modulate:a", 1.0, 1.0)
 	await tween.finished
 	sheild_enabled=true
+
+func sheild_enabled_for_the_first_time():
+	shield_enabled()
 	
 func sheild_on():
-	if Input.is_action_pressed("shield") and shield_is_available and sheild_enabled:
+	if Input.is_action_pressed("shield") and shield_is_available and sheild_enabled and GameData.save_data["globo"]:
 		$sheild.visible=true
 		$sheild.play("sheild_on")
 		sheild_ongoing=true
@@ -518,14 +533,16 @@ func _on_sheild_timer_blinking_timeout() -> void:
 		tween.tween_property($sheild, "modulate:a", 1.0, 0.3)
 		await tween.finished
 
+func new_map(limit_left,limit_right):
+	$"../Scene_transition/AnimationPlayer".play("dissolve")
+	await $"../Scene_transition/AnimationPlayer".animation_finished
+	$Camera2D.limit_left=limit_left
+	$Camera2D.limit_right=limit_right
+	$"../Scene_transition/AnimationPlayer".play_backwards("dissolve")
 
-func _on_button_pressed() -> void:
-	if restart_pressed:
-		Global.pause = false
-		restart_pressed = false
-		print("reset")
-		$"../Scene_transition/AnimationPlayer".play_backwards("Game Over")
-		await $"../Scene_transition/AnimationPlayer".animation_finished
-		hero_stats.restore()
-		Global.shine_count=0
-		get_tree().reload_current_scene()
+	
+
+
+func _on_knockback_timeout() -> void:
+	knockback_is_happening=false
+	speed=180

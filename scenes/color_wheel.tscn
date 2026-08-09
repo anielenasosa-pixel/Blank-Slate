@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://3rm2htuii4xx"]
+
+[ext_resource type="Script" uid="uid://btyui7yl06bxm" path="res://scripts/color_wheel.gd" id="1_q23va"]
+[ext_resource type="Texture2D" uid="uid://dk4pvwnedpex7" path="res://icon.svg" id="1_ts6ih"]
+
+[node name="color_wheel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -67.0
+offset_right = -1089.0
+offset_bottom = -582.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_q23va")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 127.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_ts6ih")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

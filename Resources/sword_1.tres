@@ -6,4 +6,4 @@
 resource_local_to_scene = true
 script = ExtResource("1_vtny6")
 Name = "Basic_sword"
-dmg = 2
+dmg = 3

@@ -1,0 +1,95 @@
+[gd_scene load_steps=15 format=3 uid="uid://clvlxhqiv20ol"]
+
+[ext_resource type="Script" uid="uid://cfwxxd5uy61bn" path="res://scripts/power_menu.gd" id="1_2sp3a"]
+[ext_resource type="Texture2D" uid="uid://dk4pvwnedpex7" path="res://icon.svg" id="1_gw60d"]
+[ext_resource type="Texture2D" uid="uid://bthvs5iuxjnrs" path="res://assets/unlock.png" id="2_2sp3a"]
+[ext_resource type="Texture2D" uid="uid://svauornuxusa" path="res://assets/mix icons/Untitled_Artwork-1.png" id="3_1v2vs"]
+[ext_resource type="Texture2D" uid="uid://2cn7y8yaplje" path="res://assets/mix icons/Untitled_Artwork-2.png" id="4_glh7c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2sp3a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1v2vs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sp3a"]
+bg_color = Color(0.654902, 0.32549, 0.694118, 0.458824)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1v2vs"]
+bg_color = Color(1, 1, 1, 0.662745)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glh7c"]
+bg_color = Color(1, 1, 1, 0.717647)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5qh2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k61s6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5qh2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k61s6"]
+
+[node name="power_menu" type="Node2D"]
+script = ExtResource("1_2sp3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.96046e-08, -5.96046e-08)
+scale = Vector2(6, 6)
+texture = ExtResource("2_2sp3a")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = -670.0
+offset_top = -297.0
+offset_right = 657.0
+offset_bottom = 310.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2sp3a")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1v2vs")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_2sp3a")
+theme_override_styles/hovered_selected = SubResource("StyleBoxFlat_1v2vs")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxFlat_glh7c")
+theme_override_styles/selected = SubResource("StyleBoxFlat_r5qh2")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_k61s6")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_r5qh2")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_k61s6")
+select_mode = 2
+item_count = 8
+max_columns = 7
+icon_scale = 5.0
+item_0/icon = ExtResource("3_1v2vs")
+item_1/icon = ExtResource("4_glh7c")
+item_2/icon = ExtResource("4_glh7c")
+item_3/icon = ExtResource("4_glh7c")
+item_4/icon = ExtResource("4_glh7c")
+item_5/icon = ExtResource("4_glh7c")
+item_6/icon = ExtResource("4_glh7c")
+item_7/icon = ExtResource("4_glh7c")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 534.0
+offset_top = 189.0
+offset_right = 662.0
+offset_bottom = 317.0
+texture_normal = ExtResource("1_gw60d")
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -14,7 +14,7 @@ func spawn():
 		$Area2D/CollisionShape2D.set_deferred("disabled", false)
 		$Sprite2D.visible=true
 		can_spawn=false
-
+		
 
 func _on_area_2d_body_entered(body: CharacterBody2D) -> void:
 	if body.is_in_group("Hero"):

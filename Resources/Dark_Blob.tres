@@ -6,7 +6,9 @@
 resource_local_to_scene = true
 script = ExtResource("1_gph4w")
 name = "Dark Blob"
-health = 4
-dmg = 2
+health = 9
+max = 0
+dmg = 7
 attack = true
 explosion = false
+shine_count = 1

@@ -13,6 +13,8 @@ var you_can_now_take_health=true
 var weapon_attack=false
 var alive=true
 
+signal died
+
 var attack = false
 var hero = null
 
@@ -121,11 +123,7 @@ func lose_health():
 
 func dead():
 	if enemy_stats.health <= 0:
-		var shine = shine_package.instantiate()
-		shine.position=position
-		get_parent().add_child(shine)
-		shine.spawn()
-	
+		emit_signal("died")
 		$exlamation_pt.visible=false
 		$CPUParticles2D2.emitting = true
 		$AnimatedSprite2D.visible=false

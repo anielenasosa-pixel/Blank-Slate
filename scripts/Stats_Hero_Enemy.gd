@@ -10,6 +10,7 @@ class_name Stats
 @export var dmg : int
 @export var attack: bool
 @export var explosion: bool
+@export var shine_count: int
 
 
 func damage(amount: int):
@@ -17,4 +18,3 @@ func damage(amount: int):
 		
 func restore():
 	health = max
-		

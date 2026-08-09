@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://dxda8f5iiyj5i"]
+[gd_scene load_steps=96 format=3 uid="uid://dxda8f5iiyj5i"]
 
 [ext_resource type="Script" uid="uid://djkr54qbp6rl5" path="res://scripts/wah_pt.gd" id="1_la8ag"]
 [ext_resource type="Texture2D" uid="uid://clx38qm5kxifj" path="res://assets/Enemy_Anim/PE/PE_1.png" id="2_3l2eu"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://c2lpgwj56i8ad" path="res://assets/Enemy_Anim/PE/PE_29.png" id="29_bdlth"]
 [ext_resource type="Texture2D" uid="uid://bhlhp8bquy5vt" path="res://assets/Enemy_Anim/PE/PE_30.png" id="30_2rmdb"]
 [ext_resource type="Texture2D" uid="uid://cti8uvx3bq6es" path="res://assets/Enemy_Anim/PE/PE_28.png" id="31_grkqo"]
+[ext_resource type="Script" uid="uid://c0f33xmmdi0t" path="res://scripts/shine_spawn.gd" id="35_r6xts"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg63h"]
 atlas = ExtResource("2_3l2eu")
@@ -584,6 +585,9 @@ initial_velocity_max = 100.0
 scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_a1yfj")
+
+[node name="Shine_spawn" type="Node2D" parent="."]
+script = ExtResource("35_r6xts")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]

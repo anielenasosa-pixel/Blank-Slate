@@ -1,10 +1,7 @@
 extends Node
 
-var room_1=false
-var door_open=true
-var door_2_open=false
 var help_needed=true
-@onready var label = $"../Scene_transition/helpful tips/Label"
+@onready var label = $Label
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -12,23 +9,19 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	help_text()
-	door_1()
+	
 
-func door_1():
-	if room_1 and door_open:
-		await get_tree().create_timer(1.0).timeout
-		$door_1/door_anim.play_backwards("door_open")
-		$door_1/AnimationPlayer.play_backwards("open_door")
-		door_open=false
+
+
 		
 
 
 
 func help_text():
-	if room_1 and help_needed and not GameData.save_data["tips_spoken"]:
+	if Global.room_1 and help_needed and not GameData.save_data["tips_spoken"]:
 		help_needed=false
-		$"../Scene_transition/helpful tips/AnimationPlayer".play("open_help")
-		await $"../Scene_transition/helpful tips/AnimationPlayer".animation_finished
+		$AnimationPlayer.play("open_help")
+		await $AnimationPlayer.animation_finished
 		Global.pause=true
 		label.visible_characters=0
 		label.text =  "Welcome to an arena..."
@@ -55,8 +48,8 @@ func help_text():
 		label.text =  "I wish you the best off luck...My Lord"
 		await typewriter() 
 		await wait_for_click()
-		$"../Scene_transition/helpful tips/AnimationPlayer".play_backwards("open_help")
-		await $"../Scene_transition/helpful tips/AnimationPlayer".animation_finished
+		$AnimationPlayer.play_backwards("open_help")
+		await $AnimationPlayer.animation_finished
 		GameData.save_data["tips_spoken"] = true
 		GameData.save_game()
 		Global.pause=false
@@ -73,28 +66,3 @@ func wait_for_click():
 			break
 		await get_tree().process_frame
 		
-		
-
-		
-
-
-func _on_door_open_body_entered(body: Node2D) -> void:
-	if body == $"../Hero" and room_1 and Global.shine_count>=20 and not door_2_open:
-		await get_tree().create_timer(1.0).timeout
-		$door_2/door_anim.play("door_open")
-		$door_2/AnimationPlayer.play("open_door")
-		door_2_open = true
-		
-
-
-
-
-func _on_new_map_body_entered(body: Node2D) -> void:
-	if body==$"../Hero" and room_1:
-		$"../Scene_transition/AnimationPlayer".play("dissolve")
-		await $"../Scene_transition/AnimationPlayer".animation_finished
-		$"../Hero/Camera2D".limit_left=1728
-		$"../Hero/Camera2D".limit_right=2879
-		$"../Scene_transition/AnimationPlayer".play_backwards("dissolve")
-		room_1=false
-		$"../Room_2".room_2=true

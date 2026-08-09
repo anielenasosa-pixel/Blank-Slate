@@ -6,7 +6,9 @@
 resource_local_to_scene = true
 script = ExtResource("1_wrfru")
 name = "Wah Pt Fire"
-health = 4
-dmg = 3
+health = 6
+max = 0
+dmg = 10
 attack = false
 explosion = false
+shine_count = 2

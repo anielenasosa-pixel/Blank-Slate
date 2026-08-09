@@ -11,24 +11,33 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause") and not showing:
 		$".".visible=true
 		showing=true
-		get_tree().paused = true
+		Global.pause = true
+
 	
 
 func _on_button_3_pressed() -> void:
 	if showing:
 		OS.shell_open("https://forms.gle/xTamkcPN68denTYx7")
-		print("whoop")
+		
 
 
 func _on_button_2_pressed() -> void:
+
 	if showing:
-		get_tree().paused = false
+		Global.pause = false
+		Global.tutorial=true
+		Global.room_1 = false
+		Global.room_2 =false
+		Global.shine_count=0
 		get_tree().reload_current_scene()
+		
 
 
 func _on_button_pressed() -> void:
+
 	if showing:
 		$".".visible=false
 		showing=false
-		get_tree().paused = false
+		Global.pause = false
+		
 	

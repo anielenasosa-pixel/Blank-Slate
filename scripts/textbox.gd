@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var powerups=[$"../../Globo(sheild)"]
+
 @onready var label=$text
 @onready var opt_1= $opt_1
 @onready var opt_2= $opt_2
@@ -11,8 +11,8 @@ signal choice_made(button_id: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for powerup in powerups:
-		powerup.talking.connect(text_box)
+
+	Events.talking.connect(text_box)
 	opt_1_button.pressed.connect(func(): choice_made.emit(1))
 	opt_2_button.pressed.connect(func(): choice_made.emit(2))
 
@@ -22,9 +22,9 @@ func _process(delta: float) -> void:
 	buttons()
 	
 	
+	
 func text_box(text_num):
 	Global.pause=true
-	print("SIGNAL RECEIVED")
 	visible=true
 	label.visible=false
 	
@@ -160,8 +160,8 @@ func text_box(text_num):
 		label.visible_characters=0
 		$textbox/AnimationPlayer.play_backwards("up")
 		await $textbox/AnimationPlayer.animation_finished
-		$"../../Globo(sheild)".go_inside()
-		await $"../../Globo(sheild)".go_inside()
+		$"../../room_container/tutorial".get_child(2).go_inside()
+		await $"../../room_container/tutorial".get_child(2).go_inside()
 		Global.pause=false
 
 func typewriter():

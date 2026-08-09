@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 		invisible_bubble()
-		#sword_swing()
+
 
 
 func invisible_bubble():
@@ -28,8 +28,3 @@ func invisible_bubble():
 			offset = offset.normalized() * max_position
 			
 		$Pivot.global_position = hero_position + offset
-
-func sword_swing():
-	if Input.is_action_just_pressed("swing"):
-		var dir = (get_global_mouse_position() - sword_body.global_position).normalized()
-		sword_body.apply_impulse(dir * 4000)

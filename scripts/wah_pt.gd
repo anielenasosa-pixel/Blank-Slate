@@ -14,6 +14,7 @@ var hero=null
 var in_wont_come_out
 #for fire
 var speed=50
+signal died
 
 var play_anim=false
 
@@ -134,13 +135,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		weapon_attack=false
 		$AnimatedSprite2D.modulate=Color(1, 1, 1) 
 		
-func dead():	
+func dead():
 	if enemy_stats.health <= 0:
-		var shine = shine_package.instantiate()
-		shine.position=position
-		get_parent().add_child(shine)
-		shine.spawn()
-		
+		emit_signal("died")
 		
 		
 		$CPUParticles2D2.emitting = true

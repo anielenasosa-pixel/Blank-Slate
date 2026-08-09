@@ -1,0 +1,159 @@
+[gd_scene load_steps=20 format=3 uid="uid://sbocwspt3jvo"]
+
+[ext_resource type="Script" uid="uid://c34e8thcwx4iv" path="res://scripts/game_over.gd" id="1_7m3ot"]
+[ext_resource type="Texture2D" uid="uid://bthvs5iuxjnrs" path="res://assets/unlock.png" id="1_tbwuq"]
+[ext_resource type="Texture2D" uid="uid://ddi21dovn02eh" path="res://assets/pause:cont menu/button.png" id="2_racf3"]
+[ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_v3hpu"]
+[ext_resource type="FontFile" uid="uid://b5edssf4sbn5t" path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/connection_ii/ConnectionII.otf" id="3_7m3ot"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5r8m8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oavnn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ywdx8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3etow"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8tsbv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_veqri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrlfd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_htswi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mkrk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2gn3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3lgv"]
+
+[sub_resource type="Animation" id="Animation_7m3ot"]
+resource_name = "Game Ove"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game over:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.175, 1),
+"update": 0,
+"values": [Vector2(1460, -688), Vector2(1465, 862)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("restart:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.175, 21),
+"update": 0,
+"values": [Vector2(1435, -730), Vector2(1440, 820)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GAME OVER:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.5),
+"transitions": PackedFloat32Array(0.175, 21),
+"update": 0,
+"values": [Vector2(632, -1037), Vector2(637, 513)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("restart?:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.175, 21),
+"update": 0,
+"values": [Vector2(1161, -562), Vector2(1166, 988)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.175, 21),
+"update": 0,
+"values": [Vector2(826, -590), Vector2(827, 962)]
+}
+
+[sub_resource type="Animation" id="Animation_v3hpu"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_irg28"]
+_data = {
+&"Game Ove": SubResource("Animation_7m3ot"),
+&"RESET": SubResource("Animation_v3hpu")
+}
+
+[node name="Game Over" type="Node2D"]
+script = ExtResource("1_7m3ot")
+hero_stats = ExtResource("2_v3hpu")
+
+[node name="game over" type="Sprite2D" parent="."]
+position = Vector2(1460, -688)
+scale = Vector2(8, 8)
+texture = ExtResource("1_tbwuq")
+
+[node name="restart" type="Sprite2D" parent="."]
+position = Vector2(1435, -730)
+scale = Vector2(8, 8)
+texture = ExtResource("2_racf3")
+
+[node name="GAME OVER" type="Label" parent="."]
+offset_left = 632.0
+offset_top = -1037.0
+offset_right = 2282.0
+offset_bottom = -434.0
+theme_override_fonts/font = ExtResource("3_7m3ot")
+theme_override_font_sizes/font_size = 300
+text = "Game Over
+"
+
+[node name="restart?" type="Label" parent="."]
+offset_left = 1161.0
+offset_top = -562.0
+offset_right = 1719.0
+offset_bottom = -412.0
+theme_override_fonts/font = ExtResource("3_7m3ot")
+theme_override_font_sizes/font_size = 150
+text = "Restart"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 826.0
+offset_top = -590.0
+offset_right = 2054.0
+offset_bottom = -387.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5r8m8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_oavnn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ywdx8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3etow")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8tsbv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_veqri")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qrlfd")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_htswi")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3mkrk")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_v2gn3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r3lgv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_irg28")
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,469 @@
+[gd_scene load_steps=50 format=3 uid="uid://bseme0i47xrq8"]
+
+[ext_resource type="Script" uid="uid://cb42psplw2ms0" path="res://scripts/textbox.gd" id="1_tac8f"]
+[ext_resource type="Texture2D" uid="uid://ci0qlnll5jj1g" path="res://assets/GLOBO/Untitled_Artwork-13.png" id="2_vb5ih"]
+[ext_resource type="Texture2D" uid="uid://bxvw2vs55cqh3" path="res://assets/GLOBO/Untitled_Artwork-5.png" id="3_6pn8l"]
+[ext_resource type="Texture2D" uid="uid://du8hp3j8077yk" path="res://assets/GLOBO/Untitled_Artwork-2.png" id="4_0jf8d"]
+[ext_resource type="Texture2D" uid="uid://b436r1hg7p7t3" path="res://assets/GLOBO/Untitled_Artwork-14.png" id="5_apcft"]
+[ext_resource type="Texture2D" uid="uid://b5gqkd8iarqsv" path="res://assets/GLOBO/Untitled_Artwork-1.png" id="6_2pn8f"]
+[ext_resource type="Texture2D" uid="uid://bn40chfnd3dt0" path="res://assets/GLOBO/Untitled_Artwork-7(1).png" id="7_tfhda"]
+[ext_resource type="Texture2D" uid="uid://bco2utc683sri" path="res://assets/GLOBO/Untitled_Artwork-4(1).png" id="8_usxgj"]
+[ext_resource type="Texture2D" uid="uid://6bu8rl0jljl3" path="res://assets/GLOBO/Untitled_Artwork-6(1).png" id="9_mmsp5"]
+[ext_resource type="Texture2D" uid="uid://b3wst8ksuybjk" path="res://assets/GLOBO/Untitled_Artwork-3(1).png" id="10_an0t8"]
+[ext_resource type="Texture2D" uid="uid://bq3n7s2ps2qeh" path="res://assets/Buttons/inner_button.png" id="11_db4rb"]
+[ext_resource type="FontFile" uid="uid://b5edssf4sbn5t" path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/connection_ii/ConnectionII.otf" id="12_6uaey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3etow"]
+atlas = ExtResource("3_6pn8l")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tsbv"]
+atlas = ExtResource("4_0jf8d")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veqri"]
+atlas = ExtResource("5_apcft")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrlfd"]
+atlas = ExtResource("6_2pn8f")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htswi"]
+atlas = ExtResource("6_2pn8f")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mkrk"]
+atlas = ExtResource("4_0jf8d")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2gn3"]
+atlas = ExtResource("7_tfhda")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3lgv"]
+atlas = ExtResource("5_apcft")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ehsd"]
+atlas = ExtResource("8_usxgj")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywdx8"]
+atlas = ExtResource("9_mmsp5")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l6bj"]
+atlas = ExtResource("10_an0t8")
+region = Rect2(426, 180, 213, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3etow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3etow")
+}],
+"loop": true,
+"name": &"bruh.",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tsbv")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veqri")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrlfd")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htswi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mkrk")
+}],
+"loop": true,
+"name": &"right_left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2gn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3lgv")
+}],
+"loop": true,
+"name": &"shocked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ehsd")
+}],
+"loop": true,
+"name": &"uhhhh",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywdx8")
+}],
+"loop": true,
+"name": &"welp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l6bj")
+}],
+"loop": true,
+"name": &"whaa",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aor82"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_krfhu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x3a3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgocm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pk1le"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1al3e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sh8gf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4h0lf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ikos"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjtuq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3f3c0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7q0na"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aduj5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8gia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ids5a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qr7ox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fkkw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8g0k1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2grk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b02dr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpokl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xrmos"]
+
+[sub_resource type="Animation" id="Animation_u6ysv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, -163)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../opt_1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(924, 65)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../opt_2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(924, 112)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../text:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 10.2025)]
+}
+
+[sub_resource type="Animation" id="Animation_vs2u7"]
+resource_name = "up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(579, 488), Vector2(576, -163)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../opt_1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(932, 723.797), Vector2(924, 65)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../opt_2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(932, 770.797), Vector2(924, 112)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../text:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(18, 669), Vector2(10, 10.2025)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../text:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../opt_1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../opt_2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyrby"]
+_data = {
+&"RESET": SubResource("Animation_u6ysv"),
+&"up": SubResource("Animation_vs2u7")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -161.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_tac8f")
+metadata/_edit_use_anchors_ = true
+
+[node name="textbox" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, -163)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("2_vb5ih")
+
+[node name="opt_1TEXT" type="Sprite2D" parent="textbox"]
+visible = false
+position = Vector2(248.458, 132.111)
+texture = ExtResource("11_db4rb")
+
+[node name="globo" type="AnimatedSprite2D" parent="textbox"]
+position = Vector2(261.805, 81.7147)
+sprite_frames = SubResource("SpriteFrames_3etow")
+animation = &"left"
+
+[node name="opt_2TEXT" type="Sprite2D" parent="textbox"]
+visible = false
+position = Vector2(248.444, 159.083)
+texture = ExtResource("11_db4rb")
+
+[node name="opt 1" type="Button" parent="textbox"]
+anchors_preset = -1
+anchor_left = 0.000370264
+anchor_top = -0.00108918
+anchor_right = 0.000370264
+anchor_bottom = -0.00108918
+offset_left = 181.096
+offset_top = 120.281
+offset_right = 308.096
+offset_bottom = 146.281
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aor82")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_krfhu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_x3a3x")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_sgocm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_pk1le")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1al3e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sh8gf")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_4h0lf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3ikos")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_pjtuq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3f3c0")
+metadata/_edit_use_anchors_ = true
+
+[node name="opt 2" type="Button" parent="textbox"]
+anchors_preset = -1
+anchor_left = -0.00640049
+anchor_top = -0.00324966
+anchor_right = -0.00640049
+anchor_bottom = -0.00324966
+offset_left = 183.43
+offset_top = 145.059
+offset_right = 311.43
+offset_bottom = 171.059
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7q0na")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_aduj5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_l8gia")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ids5a")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qr7ox")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3fkkw")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8g0k1")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_o2grk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_b02dr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_gpokl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xrmos")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="textbox"]
+libraries = {
+&"": SubResource("AnimationLibrary_xyrby")
+}
+
+[node name="opt_1" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 924.0
+offset_top = 65.0
+offset_right = 1030.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.587618, 0.23648, 2.88785e-07, 1)
+theme_override_fonts/font = ExtResource("12_6uaey")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="opt_2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 924.0
+offset_top = 112.0
+offset_right = 1030.0
+offset_bottom = 135.0
+theme_override_colors/font_color = Color(0.587618, 0.23648, 2.88785e-07, 1)
+theme_override_fonts/font = ExtResource("12_6uaey")
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+
+[node name="text" type="Label" parent="."]
+visible = false
+z_index = 10
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.000520849
+anchor_top = 0.00123456
+anchor_right = 0.144271
+anchor_bottom = 0.00123456
+offset_left = 9.39998
+offset_top = 10.2025
+offset_right = 338.8
+offset_bottom = 81.2025
+scale = Vector2(1.8, 2)
+theme_override_colors/font_color = Color(0.679671, 0.277037, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("12_6uaey")
+theme_override_font_sizes/font_size = 13
+text = "Hi my name is ani and i love you so much i wish i had a teddy bear and icecream and love and hugs and a mansion and toys and cars  shhjwjwhg"
+autowrap_mode = 2

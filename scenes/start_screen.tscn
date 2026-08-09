@@ -1,11 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://cl6xkq80gbfml"]
+[gd_scene load_steps=27 format=3 uid="uid://cl6xkq80gbfml"]
 
 [ext_resource type="Script" uid="uid://m5630vba64ms" path="res://scripts/start_screen.gd" id="1_hm208"]
 [ext_resource type="Texture2D" uid="uid://b8ywjgajk57n5" path="res://assets/Title/Untitled_Artwork-1.png" id="2_r2jwc"]
 [ext_resource type="Texture2D" uid="uid://bb840jwoci1f7" path="res://assets/Title/Untitled_Artwork-5.png" id="3_hm208"]
+[ext_resource type="Shader" uid="uid://m26vqlwn0em4" path="res://scenes/wave_effect(start_screen).gdshader" id="3_o30b1"]
 [ext_resource type="Texture2D" uid="uid://jkluxv7tggxu" path="res://assets/Title/Untitled_Artwork-3.png" id="4_5pab1"]
 [ext_resource type="Texture2D" uid="uid://diqbg41jcg1bp" path="res://assets/Title/Untitled_Artwork-2.png" id="5_5pab1"]
 [ext_resource type="Texture2D" uid="uid://d2nnc7xjynfn6" path="res://assets/Title/Untitled_Artwork-4.png" id="6_o30b1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka6nf"]
+shader = ExtResource("3_o30b1")
+shader_parameter/wave_speed = 3.0
+shader_parameter/wave_frequency = 32.416
+shader_parameter/wave_amplitude = 8.037
 
 [sub_resource type="Animation" id="Animation_ka6nf"]
 length = 0.001
@@ -33,7 +40,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.3, 1.5, 1.7, 1.9, 2),
-"transitions": PackedFloat32Array(3.4822, 0.812252, 1.51572, 0.5, 2, 0.435275, 1.1487),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 2, 0.5, -2),
 "update": 0,
 "values": [Vector2(0, -286.433), Vector2(0, 50), Vector2(0, -20), Vector2(0, 30), Vector2(0, -10), Vector2(0, 10), Vector2(0, 0)]
 }
@@ -96,11 +103,11 @@ animations = [{
 }]
 
 [node name="Start_screen" type="Node2D"]
-scale = Vector2(30, 30)
+scale = Vector2(2, 2)
 script = ExtResource("1_hm208")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.15, 0.15)
+zoom = Vector2(0.95, 0.95)
 
 [node name="background" type="Sprite2D" parent="."]
 position = Vector2(0, -4.03333)
@@ -108,6 +115,7 @@ scale = Vector2(1, 1.36704)
 texture = ExtResource("2_r2jwc")
 
 [node name="title" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ka6nf")
 position = Vector2(0, -286.433)
 texture = ExtResource("3_hm208")
 

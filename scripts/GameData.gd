@@ -1,8 +1,12 @@
 extends Node
 var save_data = {
-		"shield_unlocked" : false,
 		"globo_gave_shield" : false,
-		"tips_spoken" : false
+		"tips_spoken" : false,
+		
+		"globo": false,
+		"globo_unlocked" : false,
+		"powerup2": false,
+		"powerup3": false
 	}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

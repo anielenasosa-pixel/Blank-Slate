@@ -1,7 +1,8 @@
 extends Node2D
 
 @export var properties: Resource
-signal talking(text_num)
+
+signal sheild
 var waiting=false
 var can_wait=true
 var speed = 25
@@ -30,11 +31,9 @@ func _process(delta: float) -> void:
 
 func _on_talk_radius_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hero"):
-		emit_signal("talking",1)
-		
+		Events.emit_signal("talking",1)
 		
 func look():
-	print("hello")
 	await get_tree().create_timer(1.5).timeout
 	
 	waiting = false
@@ -51,14 +50,15 @@ func go_inside():
 	$Path2D/PathFollow2D/CPUParticles2D2.emitting = true
 	await get_tree().create_timer(1.0).timeout
 	visible=false
-	GameData.save_data["shield_unlocked"] = true
-	GameData.save_data["globo_gave_shield"] = true
-	GameData.save_game()
-	$"../Scene_transition/AnimationPlayer".play("unlock")
+	$"../CanvasLayer/AnimationPlayer".play("unlock")
 	await wait_for_click()
-	$"../Scene_transition/AnimationPlayer".play_backwards("unlock")
-	$"../Hero".shield_enabled()
-	await $"../Hero".shield_enabled()
+	$"../CanvasLayer/AnimationPlayer".play_backwards("unlock")
+	GameData.save_data["globo_unlocked"] = true
+	GameData.save_data["globo_gave_shield"] = true
+	GameData.save_data["globo"] = true
+	GameData.save_game()
+	Events.emit_signal("sheild_enabled")
+	await get_tree().create_timer(1.5).timeout
 	queue_free()
 	
 func wait_for_click():

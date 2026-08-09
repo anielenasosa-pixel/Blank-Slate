@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://0soy55uim4x6"]
+[gd_scene load_steps=84 format=3 uid="uid://0soy55uim4x6"]
 
 [ext_resource type="Script" uid="uid://byne7ji2osex2" path="res://scripts/damian.gd" id="1_l6ls4"]
 [ext_resource type="Resource" uid="uid://b7yqlrea8i36s" path="res://Resources/sword_1.tres" id="2_q1mpi"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bklqopupli7ug" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-3.png" id="38_uoy2f"]
 [ext_resource type="Texture2D" uid="uid://bynpk0rgjkqyq" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-4.png" id="39_oho8l"]
 [ext_resource type="Texture2D" uid="uid://bwdgv36tiecrq" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-5.png" id="40_4wt0l"]
+[ext_resource type="Script" uid="uid://c0f33xmmdi0t" path="res://scripts/shine_spawn.gd" id="41_q1mpi"]
 [ext_resource type="Texture2D" uid="uid://b70eifn0w01lc" path="res://assets/alert/unnamed (1).png" id="42_ayltk"]
 [ext_resource type="Texture2D" uid="uid://c8y422rahawir" path="res://assets/alert/unnamed.png" id="43_evw5e"]
 [ext_resource type="Texture2D" uid="uid://4b361mee6msh" path="res://assets/alert/unnamed (2).png" id="44_shkcv"]
@@ -445,6 +446,9 @@ shape = SubResource("CircleShape2D_ayltk")
 [node name="knockback_timer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="Shine_spawn" type="Node2D" parent="."]
+script = ExtResource("41_q1mpi")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

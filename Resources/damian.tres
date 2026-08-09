@@ -6,7 +6,9 @@
 resource_local_to_scene = true
 script = ExtResource("1_3u81m")
 name = "Damian"
-health = 10
-dmg = 4
+health = 9
+max = 0
+dmg = 12
 attack = false
 explosion = false
+shine_count = 3

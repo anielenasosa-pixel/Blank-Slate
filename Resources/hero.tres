@@ -5,8 +5,9 @@
 [resource]
 script = ExtResource("1_pwlmv")
 name = "Hero"
-health = 10
-max = 10
+health = 100
+max = 100
 dmg = 0
 attack = false
 explosion = false
+shine_count = 0
