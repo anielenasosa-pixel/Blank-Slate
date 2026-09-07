@@ -9,6 +9,7 @@ var attack=false
 @export var hero_stats: Resource
 @export var enemy_stats : Resource
 @export var basic_sword: Resource
+@export var basic_gun: Resource
 var hero=null
 
 var in_wont_come_out
@@ -35,10 +36,16 @@ func _process(delta: float) -> void:
 	look()
 	shoot()
 	play_animm()
+	_hide()
 
 
-
-
+func _hide():
+	if $AnimatedSprite2D.frame<=20 or $AnimatedSprite2D.frame>=32:
+		$CollisionShape2D.disabled=true
+		$Area2D/CollisionShape2D.disabled=true
+	else:
+		$CollisionShape2D.disabled=false
+		$Area2D/CollisionShape2D.disabled=false
 
 func shoot():
 	if Global.pause:
@@ -60,19 +67,21 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func spawn_fire():
-	if Global.pause:
-		return
-	var player_position=hero.global_position
-	
-	var fire=fire_package.instantiate()
-	
-	fire.position=position
-	get_tree().current_scene.add_child(fire)
-	var direction=(player_position-fire.position).normalized()
-	
-	fire.velocity=direction*speed
-	
-	hero.enemies.append(fire)
+	if $AnimatedSprite2D.frame>=20 or $AnimatedSprite2D.frame<=32:
+		if Global.pause:
+			return
+		var player_position=hero.global_position
+		
+		var fire=fire_package.instantiate()
+		
+		fire.position=position
+		get_tree().current_scene.add_child(fire)
+		EnemyManager.enemies.append(fire)
+		var direction=(player_position-fire.position).normalized()
+		
+		fire.velocity=direction*speed
+
+		hero.enemies.append(fire)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	play_anim=false
@@ -80,7 +89,19 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_popping_out_timeout() -> void:
 	spawn_fire()
+	play_squash_and_stretch()
 	
+func play_squash_and_stretch():
+	if Global.pause:
+		return
+	if $AnimatedSprite2D.frame>=20 or $AnimatedSprite2D.frame<=32:
+		var mat = $AnimatedSprite2D.material as ShaderMaterial
+		if not mat:
+			return
+		var tween=create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(mat, "shader_parameter/squash_progress", 0.4, 0.5)
+		tween.tween_property(mat, "shader_parameter/squash_progress", -1, 0.4)
+		tween.tween_property(mat, "shader_parameter/squash_progress", 0.0, 0.1)
 
 func look():
 	var direction=(hero.global_position-position)
@@ -121,7 +142,7 @@ func _on_hit_box_body_exited(body: Node2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("sword") and $AnimatedSprite2D.frame<=41 and $AnimatedSprite2D.frame>14:
+	if (body.is_in_group("gun") or body.is_in_group("sword")) and $AnimatedSprite2D.frame<=41 and $AnimatedSprite2D.frame>14:
 		var camera= hero.get_node("Camera2D")
 		camera.screen_shake(3,0.5)
 		weapon_attack=true
@@ -131,13 +152,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("sword"):
+	if body.is_in_group("gun") or body.is_in_group("sword"):
 		weapon_attack=false
 		$AnimatedSprite2D.modulate=Color(1, 1, 1) 
 		
 func dead():
 	if enemy_stats.health <= 0:
-		emit_signal("died")
+	
 		
 		
 		$CPUParticles2D2.emitting = true
@@ -145,11 +166,13 @@ func dead():
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Area2D/CollisionShape2D.set_deferred("disabled", true)
 		$hit_box/CollisionShape2D.set_deferred("disabled", true)
+		call_deferred("_emit_died")
 		if not $death_timer.is_stopped():
 			return  # already started
 		$death_timer.start()
 		
-
+func _emit_died():
+	emit_signal("died")
 
 func _on_death_timer_timeout() -> void:
 	call_deferred("queue_free")

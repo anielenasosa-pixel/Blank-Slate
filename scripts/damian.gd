@@ -5,6 +5,7 @@ var shine_package=preload("res://scenes/shine.tscn")
 @export var basic_sword: Resource
 @export var hero_stats: Resource
 @export var enemy_stats: Resource
+@export var basic_gun: Resource
 
 
 #memory for the last direction it stored
@@ -110,7 +111,7 @@ func lose_health():
 	if alive: 
 		if you_can_now_take_health:
 			if weapon_attack:
-				enemy_stats.damage(basic_sword.dmg)
+				enemy_stats.damage(basic_gun.dmg)
 			
 			#this is so it doesnt deal crazy damage in one go
 				$Attack_timer.start()
@@ -122,18 +123,21 @@ func lose_health():
 
 
 func dead():
-	if enemy_stats.health <= 0:
-		emit_signal("died")
-		$exlamation_pt.visible=false
-		$CPUParticles2D2.emitting = true
-		$AnimatedSprite2D.visible=false
-		$CollisionShape2D.set_deferred("disabled", true)
-		$Area2D/CollisionShape2D.set_deferred("disabled", true)
-		alive=false
-		if not $death_timer.is_stopped():
-			return  # already started
-		$death_timer.start()
-		
+	if enemy_stats.health > 0 or not alive:
+		return
+	alive = false
+	$exlamation_pt.visible = false
+	$CPUParticles2D2.emitting = true
+	$AnimatedSprite2D.visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	call_deferred("_emit_died")
+	if not $death_timer.is_stopped():
+		return
+	$death_timer.start()
+
+func _emit_died():
+	emit_signal("died")
 	
 
 
@@ -144,7 +148,7 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("sword") and alive:
+	if (body.is_in_group("gun") or body.is_in_group("sword")) and alive:
 		var camera= hero.get_node("Camera2D")
 		camera.screen_shake(3,0.5)
 		weapon_attack=true
@@ -153,7 +157,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.is_in_group("sword"):
+	if body.is_in_group("gun") or body.is_in_group("sword"):
 		weapon_attack=false
 		$AnimatedSprite2D.modulate=Color(1,1,1)
 
@@ -167,8 +171,9 @@ func alert():
 
 func _on_alert_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Hero"):
-		$exlamation_pt.visible=true
-		$alert_timer.start()
+		if alive:
+			$exlamation_pt.visible=true
+			$alert_timer.start()
 			
 
 

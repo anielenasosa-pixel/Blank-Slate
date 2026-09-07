@@ -13,6 +13,10 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	if Global.room_2:
+		visible=true
+	else:
+		visible=false
 		invisible_bubble()
 
 

@@ -6,6 +6,7 @@ signal sheild_enabled
 signal died_restart
 signal new_map(limit_left, limit_right)
 signal kill_all
+signal go_inside
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctk3r27ry2eto"]
+[gd_scene load_steps=18 format=3 uid="uid://ctk3r27ry2eto"]
 
 [ext_resource type="Texture2D" uid="uid://cre5u5s8lxg5s" path="res://assets/Enemy_Anim/DB/Enemy_calm_2.png" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://n118oarh24wc" path="res://scripts/dark_blob.gd" id="1_5uy6h"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://b7yqlrea8i36s" path="res://Resources/sword_1.tres" id="2_dpyc1"]
 [ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_qwm2f"]
 [ext_resource type="Texture2D" uid="uid://1bh8uqecpdvn" path="res://assets/Enemy_Anim/DB/shadow.png" id="3_c4w8v"]
+[ext_resource type="Resource" uid="uid://dq61vct2rxfnk" path="res://Resources/gun_1.tres" id="5_tnp2d"]
 [ext_resource type="Script" uid="uid://c0f33xmmdi0t" path="res://scripts/shine_spawn.gd" id="8_l2shl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
@@ -35,11 +36,20 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
-radius = 12.8571
+radius = 14.2857
 
 [sub_resource type="Curve" id="Curve_dpyc1"]
 _data = [Vector2(0.0734463, 0.987494), 0.0, 0.0, 0, 0, Vector2(0.816384, 0.405964), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tnp2d"]
+offsets = PackedFloat32Array(0.15, 0.76)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m05x0"]
+gradient = SubResource("Gradient_tnp2d")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="dark_blob" type="CharacterBody2D" groups=["enemies"]]
 z_index = 1
@@ -50,6 +60,7 @@ script = ExtResource("1_5uy6h")
 basic_sword = ExtResource("2_dpyc1")
 hero_stats = ExtResource("2_qwm2f")
 enemy_stats = ExtResource("2_c4w8v")
+basic_gun = ExtResource("5_tnp2d")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5uy6h")
@@ -96,6 +107,9 @@ one_shot = true
 
 [node name="Shine_spawn" type="Node2D" parent="."]
 script = ExtResource("8_l2shl")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_m05x0")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

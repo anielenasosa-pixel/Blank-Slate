@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc8cpgs4u7pl3"]
+[gd_scene load_steps=9 format=3 uid="uid://dc8cpgs4u7pl3"]
 
 [ext_resource type="Script" uid="uid://b8hco23kt75bs" path="res://scripts/shine.gd" id="1_j15bj"]
 [ext_resource type="Texture2D" uid="uid://cm2f5b0a76oik" path="res://assets/Shine/unnamed-1.png" id="2_j15bj"]
@@ -44,6 +44,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekax2"]
 radius = 1.12681
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qd0fa"]
+radius = 32.0
+
 [node name="Shine" type="Node2D"]
 z_index = 1
 script = ExtResource("1_j15bj")
@@ -76,4 +79,10 @@ shape = SubResource("CircleShape2D_ekax2")
 
 [node name="explosion" parent="." instance=ExtResource("3_qd0fa")]
 
+[node name="magnet" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="magnet"]
+shape = SubResource("CircleShape2D_qd0fa")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="magnet" to="." method="_on_magnet_body_entered"]

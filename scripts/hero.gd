@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var PE_package= preload("res://scenes/projectile_enemy.tscn")
 @onready var WP_package= preload("res://scenes/wah_pt.tscn")
 @onready var DW_package= preload("res://scenes/damian.tscn")
+
 var spawn_enemy_1=false
 var spawn_enemy_2=false
 
@@ -13,6 +14,8 @@ var spawn_enemy_2=false
 @export var projectile_stats:Resource
 @export var dark_blob_stats:Resource
 @export var wah_pt_stats:Resource
+
+
 
 
 var alive = true
@@ -23,9 +26,10 @@ var knockback_is_happening=false
 #@onready var dark_blob= $"../dark_blob"
 
 
-#HERE ARE THE LEVEL VAR
 
-
+#THIS IS FOR CAMERA SHAKE
+var shake=5
+var duration=0.5
 
 var enemies: Array[CharacterBody2D]=[]
 
@@ -78,7 +82,7 @@ func _process(delta: float) -> void:
 	#spawn_an_enemy_2()
 func knockback():
 	knockback_is_happening=true
-	$Camera2D.screen_shake(5,0.5)
+	$Camera2D.screen_shake(shake,duration)
 	$knockback.start()
 	speed=200
 	$AnimationPlayer.play("hit")
@@ -307,12 +311,20 @@ func _on_dash_cooldown_timeout() -> void:
 func _on_hit_box_body_entered(body: CharacterBody2D) -> void:
 	if body is DarkBlob:
 		body.attack=true
+		shake=5
+		duration=0.5
 	elif body is ProjectileEnemy:
 		body.attack=true
+		shake=7
+		duration=1
 	elif body is WahPtFire:
 		body.attack=true 
+		shake=5
+		duration=0.5
 	elif body is DamianWayne:
 		body.attack=true 
+		shake=5
+		duration=0.5
 		
 		
 		
@@ -388,6 +400,7 @@ func spawn_an_enemy_1():
 			WP.hero=self
 			get_tree().current_scene.add_child(WP)
 			enemies.append(WP)
+			
 		elif enemy_generator>=76: 
 			spawn_enemy_1=false
 			var DW= DW_package.instantiate()

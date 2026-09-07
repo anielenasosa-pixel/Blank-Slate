@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://0soy55uim4x6"]
+[gd_scene load_steps=85 format=3 uid="uid://0soy55uim4x6"]
 
 [ext_resource type="Script" uid="uid://byne7ji2osex2" path="res://scripts/damian.gd" id="1_l6ls4"]
 [ext_resource type="Resource" uid="uid://b7yqlrea8i36s" path="res://Resources/sword_1.tres" id="2_q1mpi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://d1q6k1lnxy100" path="res://Resources/damian.tres" id="4_0tvva"]
 [ext_resource type="Texture2D" uid="uid://osb7fl5uu456" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-6.png" id="4_o1bx8"]
 [ext_resource type="Texture2D" uid="uid://ciiiap15o8fku" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-7.png" id="5_q1mpi"]
+[ext_resource type="Resource" uid="uid://dq61vct2rxfnk" path="res://Resources/gun_1.tres" id="5_rmbdf"]
 [ext_resource type="Texture2D" uid="uid://0b33jif7mtqq" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-8.png" id="6_rmbdf"]
 [ext_resource type="Texture2D" uid="uid://bqeolgc3p0jdf" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-9.png" id="7_kox86"]
 [ext_resource type="Texture2D" uid="uid://nspeclvngmy4" path="res://assets/Enemy_Anim/DW-UPDATED/Right_Dash-10.png" id="8_ayltk"]
@@ -358,6 +359,7 @@ script = ExtResource("1_l6ls4")
 basic_sword = ExtResource("2_q1mpi")
 hero_stats = ExtResource("3_gsthq")
 enemy_stats = ExtResource("4_0tvva")
+basic_gun = ExtResource("5_rmbdf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(13, 11)
@@ -370,9 +372,9 @@ animation = &"dash_right"
 frame = 14
 frame_progress = 1.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 visible = false
-position = Vector2(15, 2)
+position = Vector2(-5, 2)
 collision_layer = 260
 collision_mask = 260
 
@@ -431,6 +433,7 @@ texture_progress = ExtResource("44_shkcv")
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="alert"]
+visible = false
 shape = SubResource("CircleShape2D_kox86")
 
 [node name="alert_timer" type="Timer" parent="."]
@@ -440,6 +443,7 @@ wait_time = 0.5
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="protector"]
+visible = false
 position = Vector2(9, 0)
 shape = SubResource("CircleShape2D_ayltk")
 

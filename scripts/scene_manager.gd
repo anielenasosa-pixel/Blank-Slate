@@ -1,4 +1,5 @@
 extends Node2D
+var sword_package= preload("res://scenes/sword.tscn")
 var rooms={
 	"tutorial_package"=preload("res://scenes/tutorial.tscn"),
 	"room_1_package"=preload("res://scenes/room_1.tscn"),
@@ -48,3 +49,4 @@ func change_room(room_scene: PackedScene):
 	else:
 		pass
 	transition = false
+	

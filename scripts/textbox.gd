@@ -160,8 +160,9 @@ func text_box(text_num):
 		label.visible_characters=0
 		$textbox/AnimationPlayer.play_backwards("up")
 		await $textbox/AnimationPlayer.animation_finished
-		$"../../room_container/tutorial".get_child(2).go_inside()
-		await $"../../room_container/tutorial".get_child(2).go_inside()
+		Events.emit_signal("go_inside")
+		while not Input.is_action_just_pressed("click"):
+			await get_tree().process_frame
 		Global.pause=false
 
 func typewriter():

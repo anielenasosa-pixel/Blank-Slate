@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd684hre64ku6"]
+
+[ext_resource type="Script" uid="uid://behh17hg5mxe" path="res://scripts/gun.gd" id="1_og67c"]
+[ext_resource type="Texture2D" uid="uid://b3tntl4jw5gyt" path="res://assets/intro to gun/Untitled_Artwork-2.png" id="2_gp1hk"]
+
+[node name="gun" type="Node2D"]
+script = ExtResource("1_og67c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gp1hk")
+flip_h = true
+
+[node name="muzzle" type="Marker2D" parent="."]
+position = Vector2(4, 0)
+
+[node name="can_shoot" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="can_shoot" to="." method="_on_can_shoot_timeout"]

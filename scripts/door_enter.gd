@@ -29,7 +29,7 @@ func _on_door_open_body_entered(body: Node2D) -> void:
 				$door/AnimationPlayer.play("open_door")
 				$door_open/CollisionShape2D.disabled=true
 				door_opened=true
-			if room == Global.room_1 and room and Global.shine_count>=2:
+			if room == Global.room_1 and room and Global.shine_count>=20:
 				$door/door_anim.play("door_open")
 				$door/AnimationPlayer.play("open_door")
 				$door_open/CollisionShape2D.disabled=true
@@ -44,7 +44,7 @@ func _on_new_map_body_entered(body: Node2D) -> void:
 				Global.tutorial = false
 				Global.room_1 = true
 				Events.emit_signal("entered_door",1)
-			if room == Global.room_1 and room and Global.shine_count>=2:
+			if room == Global.room_1 and room and Global.shine_count>=20:
 				Events.emit_signal("new_map",1728,2879)
 				Events.emit_signal("kill_all")
 				Global.room_2 = true

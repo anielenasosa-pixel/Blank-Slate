@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://dxda8f5iiyj5i"]
+[gd_scene load_steps=101 format=3 uid="uid://dxda8f5iiyj5i"]
 
 [ext_resource type="Script" uid="uid://djkr54qbp6rl5" path="res://scripts/wah_pt.gd" id="1_la8ag"]
 [ext_resource type="Texture2D" uid="uid://clx38qm5kxifj" path="res://assets/Enemy_Anim/PE/PE_1.png" id="2_3l2eu"]
@@ -7,6 +7,8 @@
 [ext_resource type="Resource" uid="uid://beo1un3slgct0" path="res://Resources/wah_pt_fire.tres" id="3_a1yfj"]
 [ext_resource type="Texture2D" uid="uid://bfrumu0v7opwb" path="res://assets/Enemy_Anim/PE/PE_3.png" id="4_a1yfj"]
 [ext_resource type="Resource" uid="uid://b7yqlrea8i36s" path="res://Resources/sword_1.tres" id="4_r6xts"]
+[ext_resource type="Resource" uid="uid://dq61vct2rxfnk" path="res://Resources/gun_1.tres" id="5_5tyii"]
+[ext_resource type="Shader" uid="uid://4egbpclvsu4n" path="res://scenes/WP_squash_stretch.gdshader" id="5_kpnne"]
 [ext_resource type="Texture2D" uid="uid://bjgsa7lrq8ags" path="res://assets/Enemy_Anim/PE/PE_4.png" id="5_r6xts"]
 [ext_resource type="Texture2D" uid="uid://c1n42ggqvmxky" path="res://assets/Enemy_Anim/PE/PE_5.png" id="6_kpnne"]
 [ext_resource type="Texture2D" uid="uid://cc8aasfj7bnss" path="res://assets/Enemy_Anim/PE/PE_6.png" id="7_5tyii"]
@@ -35,6 +37,21 @@
 [ext_resource type="Texture2D" uid="uid://bhlhp8bquy5vt" path="res://assets/Enemy_Anim/PE/PE_30.png" id="30_2rmdb"]
 [ext_resource type="Texture2D" uid="uid://cti8uvx3bq6es" path="res://assets/Enemy_Anim/PE/PE_28.png" id="31_grkqo"]
 [ext_resource type="Script" uid="uid://c0f33xmmdi0t" path="res://scripts/shine_spawn.gd" id="35_r6xts"]
+
+[sub_resource type="Gradient" id="Gradient_5tyii"]
+offsets = PackedFloat32Array(0.05, 0.665)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mi0uj"]
+gradient = SubResource("Gradient_5tyii")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tyii"]
+resource_local_to_scene = true
+shader = ExtResource("5_kpnne")
+shader_parameter/max_squash = 0.5
+shader_parameter/squash_progress = 4.75e-08
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg63h"]
 atlas = ExtResource("2_3l2eu")
@@ -520,25 +537,34 @@ radius = 72.0
 _data = [Vector2(0.0734463, 0.987494), 0.0, 0.0, 0, 0, Vector2(0.816384, 0.405964), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Wah_Pt" type="CharacterBody2D"]
+[node name="Wah_Pt" type="CharacterBody2D" groups=["enemies"]]
 z_index = 1
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_la8ag")
 hero_stats = ExtResource("2_6ul78")
 enemy_stats = ExtResource("3_a1yfj")
 basic_sword = ExtResource("4_r6xts")
+basic_gun = ExtResource("5_5tyii")
 
 [node name="fire_spot" type="Marker2D" parent="."]
 position = Vector2(6, 4)
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.5, 2.75)
+scale = Vector2(0.390625, 0.539062)
+energy = 2.0
+texture = SubResource("GradientTexture2D_mi0uj")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 light_mask = 2
 visibility_layer = 2
+material = SubResource("ShaderMaterial_5tyii")
 sprite_frames = SubResource("SpriteFrames_f15w8")
 animation = &"Popping_out"
-frame = 53
-frame_progress = 1.0
 
 [node name="hit_box" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
 shape = SubResource("CircleShape2D_nl6bv")
@@ -569,8 +595,10 @@ shape = SubResource("CapsuleShape2D_kpnne")
 [node name="death_timer" type="Timer" parent="."]
 
 [node name="wont_come out" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wont_come out"]
+position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_a1yfj")
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]

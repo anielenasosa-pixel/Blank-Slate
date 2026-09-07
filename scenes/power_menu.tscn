@@ -1,10 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://clvlxhqiv20ol"]
+[gd_scene load_steps=58 format=3 uid="uid://clvlxhqiv20ol"]
 
 [ext_resource type="Script" uid="uid://cfwxxd5uy61bn" path="res://scripts/power_menu.gd" id="1_2sp3a"]
 [ext_resource type="Texture2D" uid="uid://dk4pvwnedpex7" path="res://icon.svg" id="1_gw60d"]
-[ext_resource type="Texture2D" uid="uid://bthvs5iuxjnrs" path="res://assets/unlock.png" id="2_2sp3a"]
+[ext_resource type="Texture2D" uid="uid://lcemibr0riad" path="res://assets/Inventory/Untitled_Artwork-1.png" id="2_7kfym"]
 [ext_resource type="Texture2D" uid="uid://svauornuxusa" path="res://assets/mix icons/Untitled_Artwork-1.png" id="3_1v2vs"]
 [ext_resource type="Texture2D" uid="uid://2cn7y8yaplje" path="res://assets/mix icons/Untitled_Artwork-2.png" id="4_glh7c"]
+[ext_resource type="Texture2D" uid="uid://bol8oy08jdp0h" path="res://assets/Inventory/Untitled_Artwork-2.png" id="6_ygcyv"]
+[ext_resource type="Texture2D" uid="uid://c8y422rahawir" path="res://assets/alert/unnamed.png" id="7_uwav7"]
+[ext_resource type="Texture2D" uid="uid://c1vmq2i161sk0" path="res://assets/sword_stuff/sword.png" id="8_8eokc"]
+[ext_resource type="Texture2D" uid="uid://bd110b54wgvfo" path="res://assets/Inventory/Untitled_Artwork-8.png" id="9_uwav7"]
+[ext_resource type="Texture2D" uid="uid://wr1h8svwio6i" path="res://assets/Inventory/Untitled_Artwork-9.png" id="10_o1dwr"]
+[ext_resource type="Texture2D" uid="uid://d3ml7eug5hnia" path="res://assets/Inventory/Untitled_Artwork-10.png" id="11_kh05x"]
+[ext_resource type="Texture2D" uid="uid://bs0xiba1voa7f" path="res://assets/Inventory/Untitled_Artwork-14.png" id="12_mimlk"]
+[ext_resource type="Texture2D" uid="uid://c8jgsqxpjbi2w" path="res://assets/Inventory/Untitled_Artwork-15.png" id="13_l3um5"]
+[ext_resource type="Texture2D" uid="uid://bu2rkexm4jgkw" path="res://assets/Inventory/Untitled_Artwork-16.png" id="14_yxgyg"]
+[ext_resource type="Texture2D" uid="uid://dx7yxbfr530ud" path="res://assets/Inventory/Untitled_Artwork-20.png" id="15_play2"]
+[ext_resource type="Texture2D" uid="uid://ceg74cbn88ysk" path="res://assets/Inventory/Untitled_Artwork-21.png" id="16_ouiit"]
+[ext_resource type="Texture2D" uid="uid://j77s8rllw502" path="res://assets/Inventory/Untitled_Artwork-22.png" id="17_ri3i7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2sp3a"]
 
@@ -49,19 +61,203 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k61s6"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3um5"]
+atlas = ExtResource("7_uwav7")
+region = Rect2(0, 30, 2, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxgyg"]
+atlas = ExtResource("3_1v2vs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_play2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3um5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxgyg")
+}],
+"loop": true,
+"name": &"color",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ygcyv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("swords:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-375, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_lrl52"]
+resource_name = "up_down"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("swords:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(2, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(-375, 5), Vector2(-375, -12), Vector2(-375, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwav7"]
+_data = {
+&"RESET": SubResource("Animation_ygcyv"),
+&"up_down": SubResource("Animation_lrl52")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1dwr"]
+atlas = ExtResource("8_8eokc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kh05x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1dwr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mimlk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3um5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxgyg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_play2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ouiit"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ri3i7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngsal"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51eff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mc0bm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jwsts"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n30lu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5a5g"]
+atlas = ExtResource("9_uwav7")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko7nm"]
+atlas = ExtResource("10_o1dwr")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3eak"]
+atlas = ExtResource("11_kh05x")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4sebu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5a5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko7nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3eak")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_play2"]
+atlas = ExtResource("12_mimlk")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouiit"]
+atlas = ExtResource("13_l3um5")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri3i7"]
+atlas = ExtResource("14_yxgyg")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngsal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_play2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouiit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri3i7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngsal"]
+atlas = ExtResource("15_play2")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51eff"]
+atlas = ExtResource("16_ouiit")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc0bm"]
+atlas = ExtResource("17_ri3i7")
+region = Rect2(0, 0, 172, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwsts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngsal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51eff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc0bm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="power_menu" type="Node2D"]
 script = ExtResource("1_2sp3a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5.96046e-08, -5.96046e-08)
-scale = Vector2(6, 6)
-texture = ExtResource("2_2sp3a")
+scale = Vector2(7, 7)
+texture = ExtResource("2_7kfym")
 
-[node name="ItemList" type="ItemList" parent="."]
-offset_left = -670.0
-offset_top = -297.0
-offset_right = 657.0
-offset_bottom = 310.0
+[node name="Primary_ItemList" type="ItemList" parent="."]
+offset_left = -178.0
+offset_top = -228.0
+offset_right = 237.0
+offset_bottom = 379.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2sp3a")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1v2vs")
 theme_override_styles/hovered = SubResource("StyleBoxFlat_2sp3a")
@@ -74,7 +270,7 @@ theme_override_styles/cursor = SubResource("StyleBoxEmpty_k61s6")
 select_mode = 2
 item_count = 8
 max_columns = 7
-icon_scale = 5.0
+icon_scale = 3.0
 item_0/icon = ExtResource("3_1v2vs")
 item_1/icon = ExtResource("4_glh7c")
 item_2/icon = ExtResource("4_glh7c")
@@ -84,12 +280,143 @@ item_5/icon = ExtResource("4_glh7c")
 item_6/icon = ExtResource("4_glh7c")
 item_7/icon = ExtResource("4_glh7c")
 
+[node name="Secondary_ItemList" type="ItemList" parent="."]
+offset_left = -178.0
+offset_top = -228.0
+offset_right = 237.0
+offset_bottom = 379.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2sp3a")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1v2vs")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_2sp3a")
+theme_override_styles/hovered_selected = SubResource("StyleBoxFlat_1v2vs")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxFlat_glh7c")
+theme_override_styles/selected = SubResource("StyleBoxFlat_r5qh2")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_k61s6")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_r5qh2")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_k61s6")
+select_mode = 2
+item_count = 8
+max_columns = 7
+icon_scale = 3.0
+item_0/icon = ExtResource("4_glh7c")
+item_0/disabled = true
+item_1/icon = ExtResource("4_glh7c")
+item_1/disabled = true
+item_2/icon = ExtResource("4_glh7c")
+item_2/disabled = true
+item_3/icon = ExtResource("4_glh7c")
+item_3/disabled = true
+item_4/icon = ExtResource("4_glh7c")
+item_4/disabled = true
+item_5/icon = ExtResource("4_glh7c")
+item_5/disabled = true
+item_6/icon = ExtResource("4_glh7c")
+item_6/disabled = true
+item_7/icon = ExtResource("4_glh7c")
+item_7/disabled = true
+
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 534.0
-offset_top = 189.0
-offset_right = 662.0
-offset_bottom = 317.0
+offset_left = 305.0
+offset_top = 142.0
+offset_right = 433.0
+offset_bottom = 270.0
 texture_normal = ExtResource("1_gw60d")
 
-[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
+[node name="UI" type="Sprite2D" parent="."]
+position = Vector2(-5.96046e-08, -5.96046e-08)
+scale = Vector2(7, 7)
+texture = ExtResource("6_ygcyv")
+
+[node name="color_equipped_1" type="AnimatedSprite2D" parent="."]
+position = Vector2(336, -210)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_play2")
+animation = &"color"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uwav7")
+}
+autoplay = "up_down"
+
+[node name="swords" type="AnimatedSprite2D" parent="."]
+position = Vector2(-375, 5)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_kh05x")
+
+[node name="Primary_Button" type="Button" parent="."]
+offset_left = -183.0
+offset_top = -309.0
+offset_right = -56.0
+offset_bottom = -238.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mimlk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_l3um5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yxgyg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_play2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ouiit")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ri3i7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ngsal")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_51eff")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mc0bm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_jwsts")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n30lu")
+toggle_mode = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Primary_Button"]
+position = Vector2(93.64, 106.6)
+scale = Vector2(3.72, 3.56)
+sprite_frames = SubResource("SpriteFrames_4sebu")
+frame_progress = 0.683487
+
+[node name="Secondary_Button" type="Button" parent="."]
+offset_left = -43.0
+offset_top = -310.0
+offset_right = 84.0
+offset_bottom = -237.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mimlk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_l3um5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yxgyg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_play2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ouiit")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ri3i7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ngsal")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_51eff")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mc0bm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_jwsts")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n30lu")
+toggle_mode = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Secondary_Button"]
+position = Vector2(97, 26)
+scale = Vector2(3.72, 3.56)
+sprite_frames = SubResource("SpriteFrames_ngsal")
+
+[node name="Sword_Button" type="Button" parent="."]
+offset_left = 98.0
+offset_top = -309.0
+offset_right = 225.0
+offset_bottom = -236.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mimlk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_l3um5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_yxgyg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_play2")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ouiit")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ri3i7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ngsal")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_51eff")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mc0bm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_jwsts")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n30lu")
+toggle_mode = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sword_Button"]
+position = Vector2(96, -57)
+scale = Vector2(3.72, 3.56)
+sprite_frames = SubResource("SpriteFrames_jwsts")
+
+[connection signal="item_clicked" from="Primary_ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_clicked" from="Secondary_ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Primary_Button" to="." method="_on_primary_button_pressed"]
+[connection signal="pressed" from="Secondary_Button" to="." method="_on_secondary_button_pressed"]
+[connection signal="pressed" from="Sword_Button" to="." method="_on_sword_button_pressed"]

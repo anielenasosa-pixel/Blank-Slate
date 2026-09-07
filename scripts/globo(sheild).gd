@@ -9,6 +9,7 @@ var speed = 25
 var going_inside=false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Events.go_inside.connect(go_inside)
 	if GameData.save_data["globo_gave_shield"]:
 		queue_free()
 

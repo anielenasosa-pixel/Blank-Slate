@@ -5,7 +5,7 @@ var pause=false
 var tutorial = true
 var room_1 = false
 var room_2 = false
-
+var was_hit = false
 var power_menu_on=false
 
 func _ready() -> void:

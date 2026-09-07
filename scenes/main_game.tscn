@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bk43xq7i4ng30"]
+[gd_scene load_steps=68 format=3 uid="uid://bk43xq7i4ng30"]
 
 [ext_resource type="Script" uid="uid://jwo7sxvhwv0m" path="res://scripts/scene_manager.gd" id="1_mkn3m"]
 [ext_resource type="PackedScene" uid="uid://byvwhjyk4q3ox" path="res://scenes/Hero.tscn" id="2_72e8q"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://cggdd2ihm5ts8" path="res://scripts/label.gd" id="7_nqdth"]
 [ext_resource type="Texture2D" uid="uid://b522qt3trr4y6" path="res://assets/Shine/shine bar/Untitled_Artwork-3.png" id="7_wjob3"]
 [ext_resource type="Texture2D" uid="uid://bs27imncvdlqc" path="res://assets/Shine/shine bar/Untitled_Artwork-1.png" id="8_8xp80"]
-[ext_resource type="PackedScene" uid="uid://b2mlga1d5xt1n" path="res://scenes/sword.tscn" id="8_70vka"]
 [ext_resource type="Texture2D" uid="uid://b38mq7eld3dsq" path="res://assets/Shine/shine bar/Untitled_Artwork-2.png" id="9_sp04v"]
 [ext_resource type="Script" uid="uid://cl7x5sq12165h" path="res://scripts/camera_2d.gd" id="12_wjob3"]
 [ext_resource type="Texture2D" uid="uid://dfyuyhos55bsu" path="res://assets/dash_ui/Untitled_Artwork-1.png" id="35_ssxou"]
@@ -278,6 +277,18 @@ grow_vertical = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
+[node name="haze" type="ColorRect" parent="Scene_transition"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -649.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0.105882, 0.627451)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Scene_transition"]
 root_node = NodePath("../ColorRect")
 libraries = {
@@ -397,20 +408,17 @@ position = Vector2(379.375, 216.25)
 scale = Vector2(0.42, 0.42)
 
 [node name="Hero" parent="." instance=ExtResource("2_72e8q")]
-position = Vector2(-497, 7)
+position = Vector2(-494, 99)
 
 [node name="Camera2D" type="Camera2D" parent="Hero"]
-zoom = Vector2(1.5, 1.5)
-limit_left = -576
-limit_top = -321
-limit_right = 576
-limit_bottom = 321
+zoom = Vector2(2, 2)
+limit_left = -568
+limit_top = -314
+limit_right = 572
+limit_bottom = 320
 script = ExtResource("12_wjob3")
 
 [node name="Background_music" parent="." instance=ExtResource("68_aduj5")]
-
-[node name="sword" parent="." instance=ExtResource("8_70vka")]
-position = Vector2(-478, 9)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5noht")
@@ -419,3 +427,8 @@ environment = SubResource("Environment_5noht")
 script = ExtResource("1_mkn3m")
 
 [node name="room_container" type="Node2D" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0.380392, 0.65098)
+energy = 0.9
+blend_mode = 1
