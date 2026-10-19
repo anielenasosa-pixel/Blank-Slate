@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=2 format=3 uid="uid://d3b5bhfkd2oo3"]
+
+[ext_resource type="Script" uid="uid://bgt46uwm7cb6m" path="res://scripts/Stats_Hero_Enemy.gd" id="1_cydy5"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_cydy5")
+name = "Eyeball"
+health = 60
+max = 60
+dmg = 10
+attack = true
+explosion = false
+shine_count = 50

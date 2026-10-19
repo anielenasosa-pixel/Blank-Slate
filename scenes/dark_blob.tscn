@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctk3r27ry2eto"]
+[gd_scene load_steps=42 format=3 uid="uid://ctk3r27ry2eto"]
 
 [ext_resource type="Texture2D" uid="uid://cre5u5s8lxg5s" path="res://assets/Enemy_Anim/DB/Enemy_calm_2.png" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://n118oarh24wc" path="res://scripts/dark_blob.gd" id="1_5uy6h"]
@@ -8,7 +8,19 @@
 [ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_qwm2f"]
 [ext_resource type="Texture2D" uid="uid://1bh8uqecpdvn" path="res://assets/Enemy_Anim/DB/shadow.png" id="3_c4w8v"]
 [ext_resource type="Resource" uid="uid://dq61vct2rxfnk" path="res://Resources/gun_1.tres" id="5_tnp2d"]
+[ext_resource type="Texture2D" uid="uid://cobc45vuhlul8" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-22.png" id="8_g7obo"]
 [ext_resource type="Script" uid="uid://c0f33xmmdi0t" path="res://scripts/shine_spawn.gd" id="8_l2shl"]
+[ext_resource type="Texture2D" uid="uid://6o112pk5tx7k" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-23.png" id="9_akuwc"]
+[ext_resource type="Texture2D" uid="uid://bskmyx80lkxe0" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-24.png" id="10_j27uq"]
+[ext_resource type="Texture2D" uid="uid://co1bf7l6sccmn" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-25.png" id="11_1xbhp"]
+[ext_resource type="Texture2D" uid="uid://crp21ajlfaky8" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-26.png" id="12_qgb7u"]
+[ext_resource type="Texture2D" uid="uid://dyhbt422c2maw" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-27.png" id="13_y07np"]
+[ext_resource type="Texture2D" uid="uid://dtp6shg6u0d5o" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-28.png" id="14_b1m5y"]
+[ext_resource type="Texture2D" uid="uid://ce2chfa3l4v3c" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-29.png" id="15_n8jbh"]
+[ext_resource type="Texture2D" uid="uid://cmemo584se254" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-30.png" id="16_3e7wv"]
+[ext_resource type="Texture2D" uid="uid://dlgadwjy8xmm7" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-31.png" id="17_afnha"]
+[ext_resource type="Texture2D" uid="uid://dmm5tex6nhxby" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-32.png" id="18_r81ux"]
+[ext_resource type="Texture2D" uid="uid://ds3grxhu3skgj" path="res://assets/Enemy_Anim/CS/Untitled_Artwork-19.png" id="19_jfs4k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
 radius = 12.8571
@@ -20,6 +32,54 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2shl"]
 atlas = ExtResource("1_4ra3w")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqxeu"]
+atlas = ExtResource("8_g7obo")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ossmv"]
+atlas = ExtResource("9_akuwc")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8ubk"]
+atlas = ExtResource("10_j27uq")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3mse"]
+atlas = ExtResource("11_1xbhp")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cife3"]
+atlas = ExtResource("12_qgb7u")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gp0s"]
+atlas = ExtResource("13_y07np")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnnww"]
+atlas = ExtResource("14_b1m5y")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ljcl"]
+atlas = ExtResource("15_n8jbh")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m6xe"]
+atlas = ExtResource("16_3e7wv")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt71b"]
+atlas = ExtResource("17_afnha")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0esx"]
+atlas = ExtResource("18_r81ux")
+region = Rect2(25, 0, 25, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh3u3"]
+atlas = ExtResource("19_jfs4k")
+region = Rect2(25, 0, 25, 79)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tnp2d"]
 animations = [{
@@ -33,6 +93,47 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqxeu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ossmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8ubk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3mse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cife3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gp0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnnww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ljcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m6xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt71b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0esx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh3u3")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
@@ -67,7 +168,9 @@ shape = SubResource("CircleShape2D_5uy6h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tnp2d")
-autoplay = "default"
+animation = &"spawn"
+frame = 11
+frame_progress = 1.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="AnimatedSprite2D"]
 position = Vector2(2.11758e-22, 11.4286)

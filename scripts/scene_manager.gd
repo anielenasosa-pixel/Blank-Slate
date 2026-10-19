@@ -3,7 +3,8 @@ var sword_package= preload("res://scenes/sword.tscn")
 var rooms={
 	"tutorial_package"=preload("res://scenes/tutorial.tscn"),
 	"room_1_package"=preload("res://scenes/room_1.tscn"),
-	"room_2_package"=preload("res://scenes/room_2.tscn")
+	"room_2_package"=preload("res://scenes/room_2.tscn"),
+	"room_boss_package"=preload("res://scenes/boss_room.tscn")
 	}
 var current_room: Node
 var transition=false
@@ -27,6 +28,8 @@ func load_room(door_num):
 		await change_room(rooms["room_1_package"])
 	elif Global.room_2 and door_num == 2:
 		await change_room(rooms["room_2_package"])
+	elif Global.room_boss and door_num == 3:
+		await change_room(rooms["room_boss_package"])
 
 		
 	

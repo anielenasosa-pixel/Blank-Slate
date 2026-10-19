@@ -14,7 +14,7 @@ flip_h = true
 position = Vector2(4, 0)
 
 [node name="can_shoot" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="can_shoot" to="." method="_on_can_shoot_timeout"]

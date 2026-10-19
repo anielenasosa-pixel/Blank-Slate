@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://byj85njgdex8j"]
+
+[ext_resource type="Texture2D" uid="uid://b52oyi17q2g1g" path="res://assets/Eyeball-Boss 1/Untitled_Artwork-2.png" id="1_7g22j"]
+[ext_resource type="Script" uid="uid://cdv4dmgqvx3wr" path="res://scenes/eyeball_bullet.gd" id="1_klvyn"]
+[ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_ylws4"]
+[ext_resource type="Resource" uid="uid://d3b5bhfkd2oo3" path="res://Resources/Eyeball_bullet.tres" id="3_8y1hb"]
+[ext_resource type="Resource" uid="uid://dq61vct2rxfnk" path="res://Resources/gun_1.tres" id="4_bx5yn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_klvyn"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lkjwg"]
+radius = 13.0
+
+[node name="eyeball_bullet" type="CharacterBody2D" groups=["boss", "enemies"]]
+collision_layer = 256
+collision_mask = 256
+script = ExtResource("1_klvyn")
+hero_stats = ExtResource("2_ylws4")
+enemy_stats = ExtResource("3_8y1hb")
+basic_gun = ExtResource("4_bx5yn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.0625, 1)
+texture = ExtResource("1_7g22j")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0.499999, 0.999999)
+scale = Vector2(2.05, 1.6)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_klvyn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lkjwg")
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

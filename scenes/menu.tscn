@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://tlwbyet188np"]
+[gd_scene load_steps=39 format=3 uid="uid://tlwbyet188np"]
 
 [ext_resource type="Script" uid="uid://7km3rooxcjfx" path="res://scripts/menu.gd" id="1_mhnvy"]
 [ext_resource type="Texture2D" uid="uid://gy0peh3cub7" path="res://assets/pause:cont menu/background.png" id="2_4ytvr"]
+[ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_g3eks"]
 [ext_resource type="Texture2D" uid="uid://ddi21dovn02eh" path="res://assets/pause:cont menu/button.png" id="3_g3eks"]
 [ext_resource type="FontFile" uid="uid://b5edssf4sbn5t" path="res://fonts/Godot-Fontpack-d244bf6170b399a6d4d26a0d906058ddf2dafdf1/fonts/connection_ii/ConnectionII.otf" id="4_v86rl"]
 
@@ -73,6 +74,7 @@
 
 [node name="menu" type="Node2D"]
 script = ExtResource("1_mhnvy")
+hero_stats = ExtResource("2_g3eks")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4ytvr")

@@ -325,6 +325,10 @@ func _on_hit_box_body_entered(body: CharacterBody2D) -> void:
 		body.attack=true 
 		shake=5
 		duration=0.5
+	elif body is EyeballBullet:
+		body.attack=true 
+		shake=5
+		duration=0.5
 		
 		
 		
@@ -336,18 +340,31 @@ func _on_attack_cooldown_timeout() -> void:
 func attacked():
 	if Global.pause:
 		return
+	for boss in EnemyManager.bosses:
+		if is_instance_valid(boss) and boss.attack and not sheild_ongoing:
+			if attack_mode_on:
+				boss.damage()
+				knock_direction=(global_position - boss.global_position).normalized()
+				knockback()
+				attack_mode_on=false
+				$attack_cooldown.start()
+				health_bar_update()
+				return false
+			else:
+				return true
+					
 	for enemy in EnemyManager.enemies:
 		if is_instance_valid(enemy) and enemy.attack and not sheild_ongoing:
-				if attack_mode_on:
-					enemy.damage()
-					knock_direction=(global_position - enemy.global_position).normalized()
-					knockback()
-					attack_mode_on=false
-					$attack_cooldown.start()
-					health_bar_update()
-					return false
-				else:
-					return true
+			if attack_mode_on:
+				enemy.damage()
+				knock_direction=(global_position - enemy.global_position).normalized()
+				knockback()
+				attack_mode_on=false
+				$attack_cooldown.start()
+				health_bar_update()
+				return false
+			else:
+				return true
 
 
 
@@ -363,6 +380,9 @@ func _on_hit_box_body_exited(body: CharacterBody2D) -> void:
 		body.attack=false
 	elif body is DamianWayne:
 		body.attack=false
+	elif body is EyeballBullet:
+		body.attack=false
+	
 	
 func health_gone():
 	if hero_stats.health<=0 and alive:
@@ -546,11 +566,13 @@ func _on_sheild_timer_blinking_timeout() -> void:
 		tween.tween_property($sheild, "modulate:a", 1.0, 0.3)
 		await tween.finished
 
-func new_map(limit_left,limit_right):
+func new_map(limit_left,limit_right,zoom):
 	$"../Scene_transition/AnimationPlayer".play("dissolve")
 	await $"../Scene_transition/AnimationPlayer".animation_finished
 	$Camera2D.limit_left=limit_left
 	$Camera2D.limit_right=limit_right
+	$Camera2D.zoom.x=zoom
+	$Camera2D.zoom.y=zoom
 	$"../Scene_transition/AnimationPlayer".play_backwards("dissolve")
 
 	

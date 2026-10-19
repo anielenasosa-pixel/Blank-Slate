@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 
 
 func _hide():
-	if $AnimatedSprite2D.frame<=20 or $AnimatedSprite2D.frame>=32:
+	if $AnimatedSprite2D.frame<=4 or $AnimatedSprite2D.frame>=49:
 		$CollisionShape2D.disabled=true
 		$Area2D/CollisionShape2D.disabled=true
 	else:
@@ -113,7 +113,7 @@ func look():
 		$AnimatedSprite2D.flip_h=true
 
 func lose_health():
-	if you_can_now_take_health and ($AnimatedSprite2D.frame<=46 and $AnimatedSprite2D.frame>7):
+	if you_can_now_take_health and ($AnimatedSprite2D.frame<=49 and $AnimatedSprite2D.frame>4):
 		if weapon_attack:
 			enemy_stats.damage(basic_sword.dmg)
 			

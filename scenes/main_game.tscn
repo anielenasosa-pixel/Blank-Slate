@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bk43xq7i4ng30"]
+[gd_scene load_steps=74 format=3 uid="uid://bk43xq7i4ng30"]
 
 [ext_resource type="Script" uid="uid://jwo7sxvhwv0m" path="res://scripts/scene_manager.gd" id="1_mkn3m"]
 [ext_resource type="PackedScene" uid="uid://byvwhjyk4q3ox" path="res://scenes/Hero.tscn" id="2_72e8q"]
@@ -22,7 +22,10 @@
 [ext_resource type="Resource" uid="uid://bfi10by20tsa5" path="res://Resources/globo_sheild.tres" id="38_pk1le"]
 [ext_resource type="Texture2D" uid="uid://dehur5uoegqyr" path="res://assets/dash_ui/Untitled_Artwork-14.png" id="39_meg3e"]
 [ext_resource type="Texture2D" uid="uid://2hc6ga5q76m7" path="res://assets/dash_ui/Untitled_Artwork-15.png" id="40_aor82"]
+[ext_resource type="PackedScene" uid="uid://ctk3r27ry2eto" path="res://scenes/dark_blob.tscn" id="40_oojmo"]
+[ext_resource type="Script" uid="uid://l7tb3w0xldhx" path="res://scripts/sword_stats.gd" id="41_5noht"]
 [ext_resource type="Texture2D" uid="uid://bv4sj5ygifjif" path="res://assets/dash_ui/Untitled_Artwork-16.png" id="41_krfhu"]
+[ext_resource type="Script" uid="uid://bgt46uwm7cb6m" path="res://scripts/Stats_Hero_Enemy.gd" id="42_4v0b0"]
 [ext_resource type="Texture2D" uid="uid://c3sqmrsfbn1h6" path="res://assets/dash_ui/Untitled_Artwork-17.png" id="42_x3a3x"]
 [ext_resource type="Texture2D" uid="uid://i3tkelpxbvin" path="res://assets/dash_ui/Untitled_Artwork-18.png" id="43_sgocm"]
 [ext_resource type="PackedScene" uid="uid://bseme0i47xrq8" path="res://scenes/Textbox.tscn" id="44_3f3c0"]
@@ -261,6 +264,29 @@ _data = {
 glow_enabled = true
 glow_blend_mode = 0
 
+[sub_resource type="Resource" id="Resource_mkn3m"]
+resource_local_to_scene = true
+script = ExtResource("41_5noht")
+Name = "Basic_sword"
+dmg = 3
+
+[sub_resource type="Resource" id="Resource_wpxwh"]
+resource_local_to_scene = true
+script = ExtResource("42_4v0b0")
+name = "Dark Blob"
+health = 9
+max = 0
+dmg = 7
+attack = true
+explosion = false
+shine_count = 1
+
+[sub_resource type="Resource" id="Resource_jk70c"]
+resource_local_to_scene = true
+script = ExtResource("41_5noht")
+Name = "Basic_gun"
+dmg = 3
+
 [node name="Main_Game" type="Node2D"]
 script = ExtResource("1_mkn3m")
 
@@ -432,3 +458,9 @@ script = ExtResource("1_mkn3m")
 color = Color(1, 1, 0.380392, 0.65098)
 energy = 0.9
 blend_mode = 1
+
+[node name="dark_blob" parent="." instance=ExtResource("40_oojmo")]
+position = Vector2(-423, 100)
+basic_sword = SubResource("Resource_mkn3m")
+enemy_stats = SubResource("Resource_wpxwh")
+basic_gun = SubResource("Resource_jk70c")

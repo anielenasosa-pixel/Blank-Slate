@@ -1,11 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqhc5qocngw3n"]
+[gd_scene load_steps=19 format=3 uid="uid://dqhc5qocngw3n"]
 
 [ext_resource type="Script" uid="uid://blpq3ty5dbw5v" path="res://scripts/paint.gd" id="1_vhmiv"]
-[ext_resource type="Texture2D" uid="uid://d24jxg6u3jkje" path="res://assets/intro to gun/Untitled_Artwork-3.png" id="2_yiwe3"]
+[ext_resource type="Texture2D" uid="uid://cu7vmojx7y5ow" path="res://assets/intro to gun/Untitled_Artwork-2 copy.png" id="2_jt85c"]
 [ext_resource type="Texture2D" uid="uid://bmhhdto34kfqk" path="res://assets/intro to gun/Untitled_Artwork-1.png" id="3_yiwe3"]
+[ext_resource type="Texture2D" uid="uid://cfid8guxryyho" path="res://assets/intro to gun/Untitled_Artwork-8.png" id="4_n0qfj"]
+[ext_resource type="Texture2D" uid="uid://bebpei5phob21" path="res://assets/intro to gun/Untitled_Artwork-6.png" id="5_8d07b"]
+[ext_resource type="Texture2D" uid="uid://d2fwf0g6becob" path="res://assets/intro to gun/Untitled_Artwork-7.png" id="6_l0185"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8nnhm"]
-radius = 2.0
+radius = 0.8
 
 [sub_resource type="Animation" id="Animation_jt85c"]
 length = 0.001
@@ -125,10 +128,6 @@ _data = {
 &"spin": SubResource("Animation_4bkfw")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8nnhm"]
-atlas = ExtResource("2_yiwe3")
-region = Rect2(0, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bkfw"]
 atlas = ExtResource("3_yiwe3")
 region = Rect2(0, 0, 32, 32)
@@ -137,7 +136,7 @@ region = Rect2(0, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8nnhm")
+"texture": ExtResource("2_jt85c")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4bkfw")
@@ -148,10 +147,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0qfj"]
-radius = 3.0
+radius = 1.2
 
 [sub_resource type="Gradient" id="Gradient_yiwe3"]
-offsets = PackedFloat32Array(0.07, 0.09)
+offsets = PackedFloat32Array(0.016129, 0.062212)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8nnhm"]
@@ -159,12 +158,18 @@ gradient = SubResource("Gradient_yiwe3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_gm6b1"]
+_data = [Vector2(0.00208334, 1), 0.0, 0.0, 0, 0, Vector2(0.620833, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="paint" type="CharacterBody2D" groups=["gun"]]
+scale = Vector2(2, 2)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_vhmiv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.21, -0.2)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_8nnhm")
 
@@ -176,15 +181,17 @@ autoplay = "spin"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 6.28319
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_jt85c")
 offset = Vector2(-1, 0)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["gun"]]
 rotation = 6.28319
-collision_layer = 4
-collision_mask = 4
+collision_layer = 260
+collision_mask = 260
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.2, -0.2)
 shape = SubResource("CircleShape2D_n0qfj")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -192,7 +199,50 @@ position = Vector2(1.7053e-13, 0)
 scale = Vector2(0.6, 0.55)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.576471, 0, 1)
+energy = 0.5
 texture = SubResource("GradientTexture2D_8nnhm")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 2
+texture = ExtResource("4_n0qfj")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_gm6b1")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("5_8d07b")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_gm6b1")
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 2
+texture = ExtResource("6_l0185")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_gm6b1")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,354 @@
+[gd_scene load_steps=20 format=3 uid="uid://cyr1rcvokh02b"]
+
+[ext_resource type="Script" uid="uid://dy6m55hna05d0" path="res://scenes/eyeball_boss.gd" id="1_26qbb"]
+[ext_resource type="Texture2D" uid="uid://0hltbp8jso7v" path="res://assets/Eyeball-Boss 1/Eyeball1.png" id="1_grge0"]
+[ext_resource type="Resource" uid="uid://d3h8pbabtej12" path="res://Resources/hero.tres" id="2_2ampr"]
+[ext_resource type="Texture2D" uid="uid://cxcxgti7lnpoo" path="res://assets/Eyeball-Boss 1/Eyeball2.png" id="2_l6cq0"]
+[ext_resource type="Resource" uid="uid://d3b5bhfkd2oo3" path="res://Resources/Eyeball_bullet.tres" id="3_r762t"]
+[ext_resource type="Resource" uid="uid://dq61vct2rxfnk" path="res://Resources/gun_1.tres" id="4_oq762"]
+[ext_resource type="Script" uid="uid://c0f33xmmdi0t" path="res://scripts/shine_spawn.gd" id="7_r762t"]
+
+[sub_resource type="Animation" id="Animation_ty3jg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_26qbb"]
+resource_name = "pulse"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_2ampr"]
+resource_name = "shield_disban"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.576471), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ma243"]
+_data = {
+&"RESET": SubResource("Animation_ty3jg"),
+&"pulse": SubResource("Animation_26qbb"),
+&"shield_disban": SubResource("Animation_2ampr")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26qbb"]
+radius = 18.0
+height = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ty3jg"]
+radius = 15.9991
+height = 33.9994
+
+[sub_resource type="Animation" id="Animation_l6cq0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ma243"]
+resource_name = "up down"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2523, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_grge0"]
+resource_name = "wobble"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.03333, 1.53333, 1.96667, 2.5, 3, 3.46667, 4, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(2, 2), Vector2(4, 1), Vector2(5, -2), Vector2(2, -4), Vector2(0, -4), Vector2(-3, -4), Vector2(-6, -3), Vector2(-4, 0), Vector2(-2, 3), Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_26qbb"]
+_data = {
+&"RESET": SubResource("Animation_l6cq0"),
+&"up down": SubResource("Animation_ma243"),
+&"wobble": SubResource("Animation_grge0")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l6cq0"]
+radius = 13.0
+
+[sub_resource type="Curve" id="Curve_4dee0"]
+_data = [Vector2(0.0734463, 0.987494), 0.0, 0.0, 0, 0, Vector2(0.816384, 0.405964), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Eyeball-Boss" type="CharacterBody2D" groups=["boss"]]
+z_index = 2
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_26qbb")
+hero_stats = ExtResource("2_2ampr")
+enemy_stats = ExtResource("3_r762t")
+basic_gun = ExtResource("4_oq762")
+
+[node name="ray_cast" type="Node2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="RayCast2D" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(-28, -2)
+target_position = Vector2(-74, 0)
+collision_mask = 0
+
+[node name="RayCast2D2" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(-28, 2)
+target_position = Vector2(-75, 10)
+collision_mask = 0
+
+[node name="RayCast2D3" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(-27, 7)
+target_position = Vector2(-71, 18)
+collision_mask = 0
+
+[node name="RayCast2D4" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(-24, 13)
+target_position = Vector2(-66, 32)
+collision_mask = 0
+
+[node name="RayCast2D5" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(-20, 17)
+target_position = Vector2(-55, 43)
+collision_mask = 0
+
+[node name="RayCast2D6" type="RayCast2D" parent="ray_cast"]
+position = Vector2(-15, 20)
+target_position = Vector2(-40, 53)
+collision_mask = 0
+
+[node name="RayCast2D7" type="RayCast2D" parent="ray_cast"]
+position = Vector2(-8, 22)
+target_position = Vector2(-29, 59)
+collision_mask = 0
+
+[node name="RayCast2D8" type="RayCast2D" parent="ray_cast"]
+position = Vector2(-3, 23)
+target_position = Vector2(-14, 64)
+collision_mask = 0
+
+[node name="RayCast2D9" type="RayCast2D" parent="ray_cast"]
+position = Vector2(3, 24)
+target_position = Vector2(8, 64)
+collision_mask = 0
+
+[node name="RayCast2D10" type="RayCast2D" parent="ray_cast"]
+position = Vector2(8, 22)
+target_position = Vector2(21, 61)
+collision_mask = 0
+
+[node name="RayCast2D11" type="RayCast2D" parent="ray_cast"]
+position = Vector2(14, 20)
+target_position = Vector2(45, 55)
+collision_mask = 0
+
+[node name="RayCast2D12" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(20, 17)
+target_position = Vector2(60, 43)
+collision_mask = 0
+
+[node name="RayCast2D13" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(24, 12)
+target_position = Vector2(76, 32)
+collision_mask = 0
+
+[node name="RayCast2D14" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(26, 6)
+target_position = Vector2(80, 23)
+collision_mask = 0
+
+[node name="RayCast2D15" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(27, 1)
+target_position = Vector2(81, 10)
+collision_mask = 0
+
+[node name="RayCast2D16" type="RayCast2D" parent="ray_cast"]
+z_index = 2
+position = Vector2(27, -3)
+target_position = Vector2(79, 1)
+collision_mask = 0
+
+[node name="monster" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_grge0")
+
+[node name="sheild" type="Sprite2D" parent="monster"]
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_l6cq0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="monster/sheild"]
+libraries = {
+&"": SubResource("AnimationLibrary_ma243")
+}
+autoplay = "pulse"
+
+[node name="shield_collison" type="Area2D" parent="monster" groups=["boss_sheild/hitbox"]]
+position = Vector2(0, -2)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="monster/shield_collison"]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_26qbb")
+
+[node name="hit_box" type="Area2D" parent="monster" groups=["boss_sheild/hitbox"]]
+position = Vector2(0, -2)
+disable_mode = 2
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="monster/hit_box"]
+position = Vector2(0, 1)
+rotation = -1.56465
+shape = SubResource("CapsuleShape2D_ty3jg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../monster")
+libraries = {
+&"": SubResource("AnimationLibrary_26qbb")
+}
+autoplay = "up down"
+
+[node name="bullet_timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_l6cq0")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_4dee0")
+
+[node name="death_timer" type="Timer" parent="."]
+
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="timescale" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="Shine_spawn" type="Node2D" parent="."]
+script = ExtResource("7_r762t")
+
+[connection signal="body_entered" from="monster/shield_collison" to="." method="_on_shield_collison_body_entered"]
+[connection signal="body_entered" from="monster/hit_box" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="monster/hit_box" to="." method="_on_hit_box_body_exited"]
+[connection signal="timeout" from="bullet_timer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]

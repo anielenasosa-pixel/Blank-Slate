@@ -1,7 +1,7 @@
 extends Node2D
 
 var showing=false
-# Called when the node enters the scene tree for the first time.
+@export var hero_stats:Resource
 func _ready() -> void:
 	pass
 
@@ -29,6 +29,7 @@ func _on_button_2_pressed() -> void:
 		Global.room_1 = false
 		Global.room_2 =false
 		Global.shine_count=0
+		hero_stats.restore()
 		get_tree().reload_current_scene()
 		
 

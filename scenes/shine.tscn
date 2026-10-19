@@ -45,7 +45,7 @@ _data = {
 radius = 1.12681
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qd0fa"]
-radius = 32.0
+radius = 46.0
 
 [node name="Shine" type="Node2D"]
 z_index = 1
@@ -86,3 +86,4 @@ shape = SubResource("CircleShape2D_qd0fa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="magnet" to="." method="_on_magnet_body_entered"]
+[connection signal="body_exited" from="magnet" to="." method="_on_magnet_body_exited"]

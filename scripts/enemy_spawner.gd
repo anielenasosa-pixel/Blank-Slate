@@ -4,21 +4,27 @@ extends Node2D
 @onready var WP_package= preload("res://scenes/wah_pt.tscn")
 @onready var WPF_package= preload("res://scenes/fire.tscn")
 @onready var DW_package= preload("res://scenes/damian.tscn")
+
+
+@onready var EB_package= preload("res://scenes/eyeball_boss.tscn")
 var spawn_enemy_1=false
 var spawn_enemy_2=false
 var random_pos
+var boss_spawned=true
 #THIS DOESNT ACTUALLY WORK
 @export_range(0,100) var DB_percent:int
 @export_range(0,100) var WP_percent:int
 @export_range(0,100) var DW_percent:int
-
+@export var timer_spawn:float
 @export var room:String
 var enemies = EnemyManager.enemies
+var bosses =  EnemyManager.bosses
 
 @onready var hero = $Hero
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Events.kill_all.connect(kill_all)
+	timer_spawn=$spawner_1.wait_time
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,13 +41,17 @@ func spawn_an_enemy_1():
 				randf_range(658,1653),
 				randf_range(-234,234)
 			)
+			each_spawn()
 		elif (room == "room_2" and Global.room_2):
 			random_pos = Vector2(
 				randf_range(1776,2836),
 				randf_range(-234,234)
 			)
-		each_spawn()
-			
+			each_spawn()
+		if (room == "room_boss" and Global.room_boss):
+			random_pos = Vector2(912,-147)
+			boss_spawn()
+
 func each_spawn():
 	var enemy_generator = randi() % 100 + 1
 	if enemy_generator<=DW_percent: 
@@ -68,7 +78,13 @@ func each_spawn():
 		get_tree().current_scene.add_child(DB)
 		enemies.append(DB)
 
-
+func boss_spawn():
+	spawn_enemy_1=false
+	var EB=EB_package.instantiate()
+	EB.position=random_pos
+	EB.hero=hero
+	get_tree().current_scene.add_child(EB)
+	
 
 
 

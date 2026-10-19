@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://dxda8f5iiyj5i"]
+[gd_scene load_steps=104 format=3 uid="uid://dxda8f5iiyj5i"]
 
 [ext_resource type="Script" uid="uid://djkr54qbp6rl5" path="res://scripts/wah_pt.gd" id="1_la8ag"]
 [ext_resource type="Texture2D" uid="uid://clx38qm5kxifj" path="res://assets/Enemy_Anim/PE/PE_1.png" id="2_3l2eu"]
@@ -537,6 +537,91 @@ radius = 72.0
 _data = [Vector2(0.0734463, 0.987494), 0.0, 0.0, 0, 0, Vector2(0.816384, 0.405964), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_mi0uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_kpnne")]
+}
+
+[sub_resource type="Animation" id="Animation_5tyii"]
+resource_name = "moving down"
+length = 2.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_kpnne"), SubResource("CapsuleShape2D_kpnne")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7y7y"]
+_data = {
+&"RESET": SubResource("Animation_mi0uj"),
+&"moving down": SubResource("Animation_5tyii")
+}
+
 [node name="Wah_Pt" type="CharacterBody2D" groups=["enemies"]]
 z_index = 1
 collision_layer = 9
@@ -562,11 +647,14 @@ visibility_layer = 2
 material = SubResource("ShaderMaterial_5tyii")
 sprite_frames = SubResource("SpriteFrames_f15w8")
 animation = &"Popping_out"
+frame = 53
+frame_progress = 1.0
 
-[node name="hit_box" type="Area2D" parent="."]
+[node name="hit_box" type="Area2D" parent="." groups=["enemy_hit_box"]]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+visible = false
 shape = SubResource("CircleShape2D_nl6bv")
 
 [node name="Attack_cooldown" type="Timer" parent="."]
@@ -576,15 +664,13 @@ wait_time = 7.0
 wait_time = 1.8
 one_shot = true
 
+[node name="Being_attacked_cooldown" type="Timer" parent="."]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_moay4")
 
-[node name="Being_attacked_cooldown" type="Timer" parent="."]
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="Area2D" type="Area2D" parent="." groups=["enemy_hit_box"]]
 collision_layer = 4
 collision_mask = 4
 
@@ -598,6 +684,7 @@ shape = SubResource("CapsuleShape2D_kpnne")
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wont_come out"]
+visible = false
 position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_a1yfj")
 
@@ -616,6 +703,11 @@ scale_amount_curve = SubResource("Curve_a1yfj")
 
 [node name="Shine_spawn" type="Node2D" parent="."]
 script = ExtResource("35_r6xts")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j7y7y")
+}
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="hit_box" to="." method="_on_hit_box_body_entered"]

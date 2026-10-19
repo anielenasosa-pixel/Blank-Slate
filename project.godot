@@ -81,7 +81,9 @@ pause={
 2d_physics/layer_1="Walls/DB_hit/shine"
 2d_physics/layer_3="gun/paint"
 2d_physics/layer_4="DW_sword"
+2d_physics/layer_5="Wahpt fire/eyeball bullet disapear"
 2d_physics/layer_8="fire"
+2d_physics/layer_9="Eyeball_bullet...and maybe fire...if fire doesnt work turn this on"
 
 [physics]
 

@@ -17,6 +17,8 @@ var hero: CharacterBody2D = null
 var knockback_is_happening: bool = false
 var knockback_direction: Vector2 = Vector2.ZERO
 
+var spawn_done=false
+
 @export var basic_sword: Resource
 @export var hero_stats: Resource
 @export var enemy_stats: Resource
@@ -29,8 +31,24 @@ func _ready() -> void:
 	if hero == null:
 		hero = get_tree().get_first_node_in_group("Hero")
 
+func spawn():
+	if not spawn_done:
+		$CollisionShape2D2.set_deferred("disabled", true)
+		$Area2D/CollisionShape2D.set_deferred("disabled", true)
+		$AnimatedSprite2D/Sprite2D2.visible=false
+		$AnimatedSprite2D.play("spawn")
+		await $AnimatedSprite2D.animation_finished
+		spawn_done=true
+	else:
+		if alive:
+			$CollisionShape2D2.set_deferred("disabled", false)
+			$Area2D/CollisionShape2D.set_deferred("disabled", false)
+			$AnimatedSprite2D/Sprite2D2.visible=true
+			$AnimatedSprite2D.play("default")
+
 func _process(delta: float) -> void:
 	movement(delta)
+	spawn()
 
 func damage() -> void:
 	if hero_stats and enemy_stats:
@@ -53,16 +71,11 @@ func lose_health() -> void:
 
 func dead() -> void:
 	if enemy_stats and enemy_stats.health <= 0:
-		if has_node("CPUParticles2D2"):
-			$CPUParticles2D2.emitting = true
-		if has_node("AnimatedSprite2D"):
-			$AnimatedSprite2D.visible = false
-		if has_node("CollisionShape2D2"):
-			$CollisionShape2D2.set_deferred("disabled", true)
-		if has_node("Area2D/CollisionShape2D"):
-			$Area2D/CollisionShape2D.set_deferred("disabled", true)
-		if has_node("PointLight2D"):
-			$PointLight2D.visible=false
+		$CPUParticles2D2.emitting = true
+		$AnimatedSprite2D.visible = false
+		$CollisionShape2D2.set_deferred("disabled", true)
+		$Area2D/CollisionShape2D.set_deferred("disabled", true)
+		$PointLight2D.visible=false
 			
 		alive = false
 		call_deferred("_emit_died")
@@ -77,7 +90,8 @@ func _emit_died() -> void:
 func movement(delta: float) -> void:
 	if Global.pause or hero == null:
 		return
-
+	if not spawn_done:
+		return
 	var player_position = hero.global_position
 	var player_velocity = hero.velocity 
 	var predicted_time = 0.3
